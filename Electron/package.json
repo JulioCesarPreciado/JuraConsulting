@@ -2,9 +2,9 @@
   "name": "examples",
   "version": "1.0.0",
   "description": "ejemplos de electron",
-  "main": "main.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron src/index.js"
   },
   "author": "Julio",
   "license": "ISC",
