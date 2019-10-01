@@ -590,7 +590,7 @@ input[type="reset"].primary:hover:active,
 input[type="button"].primary:hover:active,
 button.primary:hover:active,
 .button.primary:hover:active {
-	background-color: #287e6d;
+	background-color: #220101;
 }
 
 input[type="submit"].disabled,

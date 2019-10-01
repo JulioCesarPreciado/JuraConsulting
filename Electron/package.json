@@ -4,11 +4,12 @@
   "description": "ejemplos de electron",
   "main": "src/index.js",
   "scripts": {
-    "start": "electron src/index.js"
+    "start": "electron src/main.js"
   },
   "author": "Julio",
   "license": "ISC",
   "dependencies": {
-    "electron": "^6.0.10"
+    "electron": "^6.0.10",
+    "mysql": "^2.17.1"
   }
 }
