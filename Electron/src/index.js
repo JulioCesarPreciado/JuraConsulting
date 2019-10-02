@@ -7,9 +7,9 @@ var connection = mysql.createConnection({
     database: 'qs3lGxGdqy'
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
     // in case of error
-    if(err){
+    if (err) {
         console.log(err.code);
         console.log(err.fatal);
     }
