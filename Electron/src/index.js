@@ -2,7 +2,9 @@ const mysql = require('mysql');
 const { app, BrowserWindow } = require('electron');
 const url = require('url');
 const path = require('path');
-const submitFormButton = document.querySelector("#login");
+const bcrypt = require('bcrypt');
+const submitFormButton = document.querySelector("#ingresar");
+
 
 var connection = mysql.createConnection({
     host: 'remotemysql.com',
@@ -19,23 +21,26 @@ connection.connect(function (err) {
     }
 });
 
-submitFormButton.addEventListener("submit", function(event){
+submitFormButton.addEventListener("submit", function (event) {
     event.preventDefault();   // stop the form from submitting
-    return Response('hola');
+    let email = document.getElementById('email').value;
+    let pass = document.getElementById('password').value;
+    $query = "SELECT * FROM `users` WHERE email = '" + email + "'";
+
+    connection.query($query, function (err, rows, fields) {
+        if (err) {
+            console.log("Ocurrio un error a la hora de ejecutar el QRY.");
+            console.log(err);
+            return;
+        }
+        let hash = rows[0].pass
+        console.log(hash);
+    });
+
 });
 
 /* Perform a query
-$query = 'SELECT * FROM `myTableName` LIMIT 10';
 
-connection.query($query, function(err, rows, fields) {
-    if(err){
-        console.log("An error ocurred performing the query.");
-        console.log(err);
-        return;
-    }
-
-    console.log("Query succesfully executed", rows);
-});
 
 // Close the connection
 connection.end(function(){

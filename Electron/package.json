@@ -9,7 +9,12 @@
   "author": "Julio",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "electron": "^6.0.10",
-    "mysql": "^2.17.1"
+    "mysql": "^2.17.1",
+    "node-gyp": "^5.0.4"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.8.6"
   }
 }
