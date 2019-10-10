@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
     host: 'remotemysql.com',
     user: 'qs3lGxGdqy',
     password: 'OsZWjmzMkN',
-    database: 'qs3lGxGdqy'
+    database: 'qs3lGxGdqy' 
 });
 
 connection.connect(function (err) {
