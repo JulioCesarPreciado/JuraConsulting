@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const { app, BrowserWindow } = require('electron');
 const url = require('url');
 const path = require('path');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const submitFormButton = document.querySelector("#ingresar");
 
 
@@ -33,7 +33,7 @@ submitFormButton.addEventListener("submit", function (event) {
             console.log(err);
             return;
         }
-        let hash = rows[0].pass
+        let hash = rows[0];
         console.log(hash);
     });
 
