@@ -1,10 +1,18 @@
 const mysql = require('mysql');
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow} = require('electron');
+const electron = require('electron').remote;
+const dialog = electron.dialog;
 const url = require('url');
 const path = require('path');
 const simplecrypt = require("simplecrypt");
 const submitFormButton = document.querySelector("#ingresar");
 
+let win = new BrowserWindow({ width: 800, height: 600 })
+win.on('closed', () => {
+  win = null
+})
+
+win.loadURL(`file://${__dirname}/app/index.html`)
 
 var connection = mysql.createConnection({
     host: 'remotemysql.com',
@@ -33,8 +41,14 @@ submitFormButton.addEventListener("submit", function (event) {
             console.log(err);
             return;
         }
-        let hash = rows[0];
-        console.log(hash);
+        
+        //Validación de si el correo es el correcto
+        if(rows.length > 0){
+            console.log(rows[0]);
+        }else{
+            console.log(dialog.showMessageBox(BrowserWindow));
+        }
+
     });
 
 });
