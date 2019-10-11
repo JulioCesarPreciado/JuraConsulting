@@ -1,26 +1,20 @@
 const mysql = require('mysql');
-const { app, BrowserWindow} = require('electron');
+const { BrowserWindow } = require('electron');
 const electron = require('electron').remote;
-const dialog = electron.dialog;
 const url = require('url');
 const path = require('path');
-const simplecrypt = require("simplecrypt");
+var hash = require("node-php-password");
 const submitFormButton = document.querySelector("#ingresar");
 
-let win = new BrowserWindow({ width: 800, height: 600 })
-win.on('closed', () => {
-  win = null
-})
-
-win.loadURL(`file://${__dirname}/app/index.html`)
-
+// Conexión con la base de datos
 var connection = mysql.createConnection({
     host: 'remotemysql.com',
     user: 'qs3lGxGdqy',
     password: 'OsZWjmzMkN',
-    database: 'qs3lGxGdqy' 
+    database: 'qs3lGxGdqy'
 });
 
+//Validaciones y conector de la base de datos
 connection.connect(function (err) {
     // in case of error
     if (err) {
@@ -29,6 +23,7 @@ connection.connect(function (err) {
     }
 });
 
+//Evento del botón
 submitFormButton.addEventListener("submit", function (event) {
     event.preventDefault();   // stop the form from submitting
     let email = document.getElementById('email').value;
@@ -37,42 +32,46 @@ submitFormButton.addEventListener("submit", function (event) {
 
     connection.query($query, function (err, rows, fields) {
         if (err) {
-            console.log("Ocurrio un error a la hora de ejecutar el QRY.");
-            console.log(err);
+            console.log(electron.dialog.showMessageBox({
+                type: 'error',
+                buttons: ['Cancel'],
+                defaultId: 2,
+                title: 'Error de base de datos',
+                message: 'Ocurrio un error al ejecutar el query',
+                detail: err,
+            }));
             return;
         }
-        
         //Validación de si el correo es el correcto
-        if(rows.length > 0){
-            console.log(rows[0]);
-        }else{
-            console.log(dialog.showMessageBox(BrowserWindow));
+        if (rows.length > 0) {
+            //Validación de que la contraseña sea correcta
+            if (hash.verify(pass, rows[0].pass)) {
+                //Authentication OK
+                connection.end(function () { });
+                document.location.href = 'home.html';
+            } else {
+                //Authentication FAILED
+                console.log(electron.dialog.showMessageBox({
+                    type: 'error',
+                    buttons: ['Cancel'],
+                    defaultId: 2,
+                    title: 'Contraseña incorrecta.',
+                    message: 'La contraseña es incorrecta.',
+                    detail: 'Asegure que la contreseña sea la correcta.',
+                }));
+                document.getElementById('password').value = '';
+                return;
+            }
+        } else {
+            console.log(electron.dialog.showMessageBox({
+                type: 'error',
+                buttons: ['Cancel'],
+                defaultId: 2,
+                title: 'Correo no valido o incorrecto.',
+                message: 'El correo no existe.',
+                detail: 'Asegure de que introdujo el correo correcto.',
+            }));
+            return;
         }
-
     });
-
 });
-
-/* Perform a query
-
-
-// Close the connection
-connection.end(function(){
-    // The connection has been closed
-});
-
-let mainWindow;
-
-app.on('ready', () => {
-    mainWindow = new BrowserWindow({
-        webPreferences: {
-            nodeIntegration: false
-        }
-    });
-    mainWindow.setMenuBarVisibility(false);
-    mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, 'views/home.html'),
-        protocol: 'file',
-        slashes: true,
-    }))
-});*/

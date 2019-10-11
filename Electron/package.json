@@ -13,6 +13,7 @@
     "electron": "^6.0.12",
     "mysql": "^2.17.1",
     "node-gyp": "^5.0.4",
+    "node-php-password": "^0.1.2",
     "simplecrypt": "^0.1.0"
   },
   "devDependencies": {
