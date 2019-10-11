@@ -1,8 +1,5 @@
 const mysql = require('mysql');
-const { BrowserWindow } = require('electron');
 const electron = require('electron').remote;
-const url = require('url');
-const path = require('path');
 var hash = require("node-php-password");
 const submitFormButton = document.querySelector("#ingresar");
 
