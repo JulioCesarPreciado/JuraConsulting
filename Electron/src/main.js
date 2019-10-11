@@ -8,7 +8,8 @@ app.on('ready', () => {
     mainWindow = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true
-        }
+        },
+        icon: path.join(__dirname, 'assets/icons/png/favicon-96x96.png')
     });
     mainWindow.setMenuBarVisibility(false);
     mainWindow.loadURL(url.format({
