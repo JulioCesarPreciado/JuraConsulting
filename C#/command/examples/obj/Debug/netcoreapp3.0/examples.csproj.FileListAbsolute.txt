@@ -1,0 +1,11 @@
+C:\Proyectos\JuraConsulting\C#\command\examples\bin\Debug\netcoreapp3.0\examples.exe
+C:\Proyectos\JuraConsulting\C#\command\examples\bin\Debug\netcoreapp3.0\examples.deps.json
+C:\Proyectos\JuraConsulting\C#\command\examples\bin\Debug\netcoreapp3.0\examples.runtimeconfig.json
+C:\Proyectos\JuraConsulting\C#\command\examples\bin\Debug\netcoreapp3.0\examples.runtimeconfig.dev.json
+C:\Proyectos\JuraConsulting\C#\command\examples\bin\Debug\netcoreapp3.0\examples.dll
+C:\Proyectos\JuraConsulting\C#\command\examples\bin\Debug\netcoreapp3.0\examples.pdb
+C:\Proyectos\JuraConsulting\C#\command\examples\obj\Debug\netcoreapp3.0\examples.csprojAssemblyReference.cache
+C:\Proyectos\JuraConsulting\C#\command\examples\obj\Debug\netcoreapp3.0\examples.AssemblyInfoInputs.cache
+C:\Proyectos\JuraConsulting\C#\command\examples\obj\Debug\netcoreapp3.0\examples.AssemblyInfo.cs
+C:\Proyectos\JuraConsulting\C#\command\examples\obj\Debug\netcoreapp3.0\examples.dll
+C:\Proyectos\JuraConsulting\C#\command\examples\obj\Debug\netcoreapp3.0\examples.pdb
