@@ -5,4 +5,3 @@
         <menuitem id="gastos_menu" name="Gastos" parent="principal_menu" />
     </data>
 </odoo>
-
