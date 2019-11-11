@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+
+    <record id="main_view_tree" model="ir.ui.view">
+        <field name="name">model.name.view.tree</field>
+        <field name="model">main</field>
+        <field name="arch" type="xml">
+            <tree string="">
+                <field name="nombre"/>
+                <field name="precio_total"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="main_menu" name="Gastos" parent="gastos_menu" />
+
+</odoo>
