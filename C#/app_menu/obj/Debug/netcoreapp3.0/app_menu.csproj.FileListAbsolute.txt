@@ -1,0 +1,11 @@
+C:\Proyectos\JuraConsulting\C#\app_menu\bin\Debug\netcoreapp3.0\app_menu.exe
+C:\Proyectos\JuraConsulting\C#\app_menu\bin\Debug\netcoreapp3.0\app_menu.deps.json
+C:\Proyectos\JuraConsulting\C#\app_menu\bin\Debug\netcoreapp3.0\app_menu.runtimeconfig.json
+C:\Proyectos\JuraConsulting\C#\app_menu\bin\Debug\netcoreapp3.0\app_menu.runtimeconfig.dev.json
+C:\Proyectos\JuraConsulting\C#\app_menu\bin\Debug\netcoreapp3.0\app_menu.dll
+C:\Proyectos\JuraConsulting\C#\app_menu\bin\Debug\netcoreapp3.0\app_menu.pdb
+C:\Proyectos\JuraConsulting\C#\app_menu\obj\Debug\netcoreapp3.0\app_menu.csprojAssemblyReference.cache
+C:\Proyectos\JuraConsulting\C#\app_menu\obj\Debug\netcoreapp3.0\app_menu.AssemblyInfoInputs.cache
+C:\Proyectos\JuraConsulting\C#\app_menu\obj\Debug\netcoreapp3.0\app_menu.AssemblyInfo.cs
+C:\Proyectos\JuraConsulting\C#\app_menu\obj\Debug\netcoreapp3.0\app_menu.dll
+C:\Proyectos\JuraConsulting\C#\app_menu\obj\Debug\netcoreapp3.0\app_menu.pdb
