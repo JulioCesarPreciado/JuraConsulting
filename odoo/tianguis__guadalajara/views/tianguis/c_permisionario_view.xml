@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
     <data>
-        <template id="assets_frontend" name="Costume Module">
-            <xpath expr="./c_permisionario_view.xml" position="inside">
-                <script type="text/javascript" src="/tianguis_guadalajara/static/js/main.js"></script>
-            </xpath>
-        </template>
         <!-- TIANGUIS -->
         <record model="ir.ui.view" id="tianguisgdl_permisionario_tree">
             <field name="name">permisionario.tree</field>
@@ -77,7 +72,7 @@
                             </group>
                         </group>
                     </sheet>
-                    <sheet>
+                    <sheet attrs="{'invisible':[('id', '=', False)]}">
                         <separator string="Detalles del Permisonario" />
                         <group>
                             <group col="6" colspan="6">
@@ -101,10 +96,10 @@
                                         <separator string="Asistencias y Faltas" />
                                         <group col="4" colspan="4">
                                             <group col="2" colspan="2">
-                                                <field name="puestos" attrs="{'invisible':[('id', '=', False)]}" domain="[('iPERMISIO', '=', id)]"/>
+                                                <field name="puestos"  domain="[('iPERMISIO', '=', id)]"/>
                                             </group>
                                             <group col="4">
-                                                <field name="puestos_detalles"  attrs="{'invisible':[('id', '=', False)]}" domain="[('id_puesto', '=', puestos)]">
+                                                <field name="puestos_detalles"  domain="[('id_puesto', '=', puestos)]">
                                                     <tree>
                                                         <field name="id_puesto"/>
                                                         <field name="fecha"/>
@@ -140,87 +135,6 @@
                             </group>
                         </group>
                     </sheet>
-                    <!--
-                            <notebook>
-                                <page string="Puestos">
-                                    <separator string="Puestos" />
-                                    <field name="puestos_id">
-                                        <tree>
-                                            <field name="smlTIANGUIS" string="Tianguis" />
-                                            <field name="iZonaT" string="Zona" />
-                                            <field name="smlCUADRA" string="Linea" />
-                                            <field name="smlGIRO1" string="Giro" />
-                                            <field name="valor" string="Costo" />
-                                        </tree>
-                                    </field>
-                                </page>
-                                <page string="Asistencias/Faltas">
-                                    <separator string="Asistencias y Faltas" />
-                                    <field name="asistencias">
-                                        <tree>
-                                            <field name="smlTianguis" string="Tianguis" />
-                                            <field name="puesto" string="Puesto" />
-                                            <field name="vchSemanas" string="Semana" />
-                                            <field name="tynEstado" />
-                                        </tree>
-                                    </field>
-                                </page>
-                                <page string="Apercibimientos">
-                                    <separator string="Apercibimientos" />
-                                    <field name="apercibimientos_id" string="Apercibimientos">
-                                        <tree>
-                                            <field name="puesto" />
-                                            <field name="motivo" />
-                                        </tree>
-                                    </field>
-                                </page>
-                                <page string="Descuentos">
-                                    <separator string="Descuentos" />
-                                    <field name="motivo_descuento">
-                                        <tree>
-                                            <field name="vchMotivoDescuento" />
-                                        </tree>
-                                    </field>
-                                </page>
-                                <page string="Estado de Cuenta">
-                                    <separator string="Estado de Cuenta" />
-                                    <field name="pagos_id" string="Estado de Cuenta">
-                                        <tree>
-                                            <field name="id" string="Folio" />
-                                            <field name="puesto" />
-                                            <field name="concepto" />
-                                            <field name="cargo" string="Cargo en Saldo" />
-                                            <field name="abono" string="Cargo en efectivo" />
-                                            <field name="date_action" string="Fecha de elaboración" />
-                                        </tree>
-                                    </field>
-                                </page>
-                                <page string="Costos de Tianguis">
-                                    <separator string="Puestos" />
-                                    <field name="puestos_id">
-                                        <tree>
-                                            <field name="smlTIANGUIS" string="Tianguis" />
-                                            <field name="iZonaT" string="Zona" />
-                                            <field name="smlGIRO1" string="Giro" />
-                                            <field name="valor" string="Costo" />
-                                            <button name="open_detalle" string="Julio Se la traga Completa" type="object"
-                                                class="oe_highlight"/>
-                                            <button name="cambiar_vendedor" type="object" string="Aceptar" class="oe_highlight"/>
-                                        </tree>
-                                    </field>
-                                </page>
-                                <page string = "Documentos">
-                                    <separator string="Documentos" /> 
-                                    <field name="documentos_id">
-                                        <tree>
-                                            <field name="nombre"/>
-                                            <field name="documento" widget="binary" filename="nombre"/>
-                                            <field name="create_date" string="Fecha de subida"/>
-                                        </tree>
-                                    </field>
-                                </page>
-                            </notebook>
-                        -->
                 </form>
             </field>
         </record>

@@ -8,11 +8,11 @@
             <field name="arch" type="xml">
 
                 <tree>
-                    <field name="id"/>
-                    <field name="chUsuario" />
-                    <field name="tynArea" />
-                    <field name="tynNivel" />
-                    <field name="estatus" />
+                    <field name="id" class="aling" />
+                    <field name="chUsuario" class="aling" />
+                    <field name="tynArea" class="aling" />
+                    <field name="tynNivel" class="aling" />
+                    <field name="estatus" class="aling" />
                 </tree>
 
             </field>
@@ -37,7 +37,7 @@
                                 <h3>Datos del usuario</h3>
                                 <div style="border-style: double;  padding: 3px;">
                                     <group col="4" colspan="4">
-                                        <field name="vchNombre" placeholder="Nombre del Usuario"/>
+                                        <field name="vchNombre" placeholder="Nombre(s)"/>
                                         <field name="estatus" placeholder="Seleccione el estatus" attrs="{'invisible':[('id', '=', False)]}"/>
                                     </group>
                                     <group col="4" colspan="4">
