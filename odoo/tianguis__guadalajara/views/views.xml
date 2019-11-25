@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="tianguis__guadalajara.list">
+      <field name="name">Tianguis_Guadalajara list</field>
+      <field name="model">tianguis__guadalajara.tianguis__guadalajara</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="tianguis__guadalajara.action_window">
+      <field name="name">Tianguis_Guadalajara window</field>
+      <field name="res_model">tianguis__guadalajara.tianguis__guadalajara</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="tianguis__guadalajara.action_server">
+      <field name="name">Tianguis_Guadalajara server</field>
+      <field name="model_id" ref="model_tianguis__guadalajara_tianguis__guadalajara"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="Tianguis_Guadalajara" id="tianguis__guadalajara.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="tianguis__guadalajara.menu_1" parent="tianguis__guadalajara.menu_root"/>
+    <menuitem name="Menu 2" id="tianguis__guadalajara.menu_2" parent="tianguis__guadalajara.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="tianguis__guadalajara.menu_1_list" parent="tianguis__guadalajara.menu_1"
+              action="tianguis__guadalajara.action_window"/>
+    <menuitem name="Server to list" id="tianguis__guadalajara" parent="tianguis__guadalajara.menu_2"
+              action="tianguis__guadalajara.action_server"/>
+    -->
+  </data>
+</odoo>

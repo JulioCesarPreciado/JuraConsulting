@@ -1,0 +1,111 @@
+ <odoo>
+ <data>
+<template id="reporte_puestos_permisionario">
+            <!-- <t t-call="garantias.injetech_external_layout_header"/> -->
+            <t t-call="report.html_container">
+            <!-- t-as="" es el enombre con el que mandamos a llamar las variables del modelo puede ser calquiera, pero el standar es doc -->
+                    <div class="page"  style="margin: 0 50px">
+                    <div class="row">       
+                            <div class="col-xs-3">
+                                <!-- <img style="width: 200px; height: 100px; margin-top: 40px;" src="/garantias/static/src/img/cio2.png"/> -->
+                            </div>
+                            <div class="col-xs-6" style="text-align: center; margin-top: 60px">
+                                <h1 style="font-size: 18px;">DIR. GRAL DE TIANGUIS Y COMERCIO EN E.A. (2018-2021)</h1>
+                                <p style="text-align: center">REPORTE DE PUESTOS POR PERMISIONARIO (Compulsa)</p>
+                            </div>
+                        </div>
+                    <div class="row">
+                         <t t-foreach="docs" t-as="doc">
+
+                            <div>
+                                <b>Permisionario: </b><span t-field="doc.permisionario"/>
+                                <br/>
+                                <b>Dirección: </b><span t-field="doc.direccion"/>
+                                <br/>
+                                <b>Padre: </b><span t-field="doc.padre"/>
+                                <br/>
+                                <b>Madre: </b><span t-field="doc.madre"/>
+                                <br/>
+                                <b>Esposa: </b><span t-field="doc.esposa"/>
+                                <br/>
+                                <b>Hijos: </b><span t-field="doc.hijos"/>
+                                <br/>
+                                <br/>
+                            </div>
+                        </t>
+                    </div>
+                            <table style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #000000 !important;" rowspan="2">Folio</th>
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #000000 !important;" rowspan="2">Día</th>
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #000000 !important;" rowspan="2">Tianguis</th>
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #000000 !important;" rowspan="2">Zona</th> 
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #000000 !important;" rowspan="2">Inicia</th> 
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #000000 !important;" rowspan="2">Termina</th> 
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #000000 !important;" rowspan="2">Longitud</th> 
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #000000 !important;" rowspan="2">Giro</th>  
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="docs" t-as="doc">
+                                        <tr>
+                                            <td style="text-align: center"><span t-field="doc.folio"/></td>
+                                            <td style="text-align: center"><span t-field="doc.dia"/></td>
+                                            <td style="text-align: center"><span t-field="doc.tianguis"/></td>
+                                            <td style="text-align: center"><span t-field="doc.zona"/></td>
+                                            <td style="text-align: center"><span t-field="doc.inicia"/></td>
+                                            <td style="text-align: center"><span t-field="doc.termina"/></td>
+                                            <td style="text-align: center"><span t-field="doc.longitud"/></td>
+                                            <td style="text-align: center"><span t-field="doc.giro"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>                 
+                            </table>
+                     </div>
+                     <!-- <div>
+                        <p style="text-align:right"><b>Total de Puestos: </b><span t-field="doc.total_puestos"/></p>
+                    </div> -->
+            </t>
+        </template>
+
+        <record id="paperformat_puesto_permisionario" model="report.paperformat"> 
+            <field name="name">PUESTO_PERMISIONARIO</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">279</field>
+            <field name="page_width">216</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+<!-- colocamos los datos del reporte  -->
+        <report
+            id="puestos_permisionario_report"
+            model="reporte.puestos.permisionario"
+            string="REPORTE DE PUESTOS POR PERMISIONARIO (Compulsa)"
+            report_type="qweb-pdf"
+            paperformat ="paperformat_puesto_permisionario"
+            name="tianguis__guadalajara.reporte_puestos_permisionario"
+            file="tianguis__guadalajara.reporte_puestos_permisionario"   
+        />
+
+        <report
+            id="informe_general_xls"
+            model="reporte.puestos.permisionario"
+            string="REPORTE DE PUESTOS POR PERMISIONARIO"
+            report_type="xlsx"
+            name="tianguis__guadalajara.puestos_permisionario_report_xls.xlsx"
+            file="tianguis__guadalajara.puestos_permisionario_report_xls.xlsx"
+            attachment_use="False"
+        />
+
+ </data>
+</odoo>

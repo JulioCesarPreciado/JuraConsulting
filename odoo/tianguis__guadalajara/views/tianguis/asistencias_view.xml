@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="tianguisgdl_asistencias_tree">
+        <field name="name">asistencias.tree</field>
+        <field name="model">asistencias</field>
+        <field name="arch" type="xml">
+
+            <tree create="false" edit="false">
+                <field name="iPermisionar" />
+                <field name="smlTianguis" />
+                <field name="puesto" />
+                <field name="vchSemanas" />
+                <field name="tynEstado" string="Asistencia" />
+            </tree>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="tianguisgdl_asistencias_form">
+        <field name="name">asistencias.form</field>
+        <field name="model">asistencias</field>
+        <field name="arch" type="xml">
+
+            <form string="Forma de captura">
+                <sheet>
+                    <notebook colspan="4">
+                        <page name="personal_information" string="Justificar Asistencias">
+                            <group col="4" colspan="4">
+                            <h3>Justificar falta</h3>
+                            <button class="btn btn-success" type="object" name="quitar_inasistencia" icon="fa-check-circle" string="Asignar Permisionario" widget="statinfo" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_asistencias">
+        <field name="name">Asistencia</field>
+        <field name="res_model">asistencias</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Crea una nueva Asistencia</p>
+        </field>
+    </record>
+
+    <menuitem action="action_view_asistencias" id="menu_asistencias" parent="menu_consultas" name="Asistencias" sequence="10" />
+
+
+</odoo>
+

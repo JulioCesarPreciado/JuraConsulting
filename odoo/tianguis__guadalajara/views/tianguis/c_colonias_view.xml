@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_colonias_tree">
+            <field name="name">c_colonias.tree</field>
+            <field name="model">c_colonias</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" />
+                    <field name="nombre" />
+                    <field name="estatus" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_colonias_form">
+            <field name="name">c_colonias.form</field>
+            <field name="model">c_colonias</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Colonias">
+                                <group col="4" colspan="4">
+                                    <field name="nombre" placeholder="Nombre de la Colonia" />
+                                    <field name="estatus" placeholder="Seleccione el estatus" attrs="{'invisible':[('id', '=', False)]}" />
+                                </group>
+                                <group>
+                                    <field name="id" invisible="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_colonias">
+            <field name="name">Cátalogo - Colonias</field>
+            <field name="res_model">c_colonias</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nueva Colonia</p>
+            </field>
+        </record>
+
+        <menuitem action="action_view_c_colonias" id="menu_c_colonias" parent="menu_catalogo" name="Colonias" sequence="99" />
+
+    </data>
+
+</odoo>

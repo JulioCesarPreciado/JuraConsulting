@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_calles_tree">
+            <field name="name">c_calles.tree</field>
+            <field name="model">c_calles</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" />
+                    <field name="vchCalle" />
+                    <field name="iCalleInicio" />
+                    <field name="iCalleFinal" />
+                    <field name="estatus" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_calles_form">
+            <field name="name">c_calles.form</field>
+            <field name="model">c_calles</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Calles">
+                                <group col="4" colspan="4">
+                                    <field name="vchCalle" placeholder="Nombre de la Calle" required = "1"/>
+                                    <field name="estatus" placeholder="Seleccione el estatus" attrs="{'invisible':[('id', '=', False)]}" />
+                                </group>
+                                <group col="4" colspan="4">
+                                    <field name="iCalleInicio" placeholder="Calle Inicio" />
+                                    <field name="iCalleFinal" placeholder="Calle Final" />
+                                </group>
+                                <group col="2" colspan="2">
+                                    <field colspan="1" name="smlLongitud" placeholder="Longitud de la calle" />
+                                </group>
+                                <group>
+                                    <field name="id" invisible="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_calles">
+            <field name="name">Cátalogo - Calles</field>
+            <field name="res_model">c_calles</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nueva Calle</p>
+            </field>
+        </record>
+
+        <menuitem action="action_view_c_calles" id="menu_calles" parent="menu_catalogo" name="Calles" sequence="99" />
+
+    </data>
+
+</odoo>

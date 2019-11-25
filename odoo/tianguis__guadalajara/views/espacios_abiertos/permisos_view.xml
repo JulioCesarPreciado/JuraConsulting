@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id=" espacios_abiertos_permisos_tree">
+        <field name="name">permisos.tree</field>
+        <field name="model">permisos</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="id" string = "Folio" />
+                <field name="iPERMISIO" />
+                <field name="Puesto" />
+                <field name="FechaMov" />
+                <field name="Movimiento" />
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id=" espacios_abiertos_permisos_form">
+        <field name="name">permisos.form</field>
+        <field name="model">permisos</field>
+        <field name="arch" type="xml">
+
+            <form string="Forma de captura">
+                <sheet>
+                    <notebook colspan="4">
+                        <page name="personal_information" string="Permisos">
+                            <group col="4" colspan="4">
+                                <field name="iPERMISIO" domain="[('c_dependencia_id', '=', 4)]" placeholder="Seleccione permisionario..." />
+                                <field name="Puesto" domain="[('iPERMISIO', '=', iPERMISIO)]" placeholder="Seleccione un puesto..." />
+                                <field name="Movimiento" placeholder="Seleccione el tipo de movimiento" required = "1" />
+                            </group>
+                            <group col="4" colspan="4">
+                                <field name="FechaInicial" placeholder="Seleccione la fecha inicial" required = "1" />
+                                <field name="FechaTermino" placeholder="Seleccione la fecha de termino" required = "1" />
+                                <field name="DiasPagar" />
+                                <field name="CuotaDiaria"/>
+                                <field name="Comentario" placeholder="Comentario"/>
+                                <field name="Monto"/>
+                                <field name="estatus" attrs="{'invisible':[('id', '=', False)]}"/>
+                                <field name="id" invisible="1"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_view_permisos">
+        <field name="name">Permisos</field>
+        <field name="res_model">permisos</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem action="action_view_permisos" id="menu_permisos" parent="menu_procesos_e" name="Permisos" sequence="10" />
+
+
+</odoo>

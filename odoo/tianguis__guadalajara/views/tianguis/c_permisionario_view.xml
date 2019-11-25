@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="assets_frontend" name="Costume Module">
+            <xpath expr="./c_permisionario_view.xml" position="inside">
+                <script type="text/javascript" src="/tianguis_guadalajara/static/js/main.js"></script>
+            </xpath>
+        </template>
+        <!-- TIANGUIS -->
+        <record model="ir.ui.view" id="tianguisgdl_permisionario_tree">
+            <field name="name">permisionario.tree</field>
+            <field name="model">permisionario</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id" string="No" />
+                    <field name="nombres" />
+                    <field name="apellidoP" />
+                    <field name="apellidoM" />
+                    <field name="curp" />
+                </tree>
+
+            </field>
+        </record>
+        <!-- ESPACIOS ABIERTOS -->
+        <record model="ir.ui.view" id="espacios_abiertos_permisionario_tree">
+            <field name="name">permisionario.tree</field>
+            <field name="model">permisionario</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id" />
+                    <field name="nombres" />
+                    <field name="apellidoP" />
+                    <field name="apellidoM" />
+                    <field name="curp" />
+                </tree>
+
+            </field>
+        </record>
+        <!-- TIANGUIS -->
+        <record model="ir.ui.view" id="tianguisgdl_permisionario_form">
+            <field name="name">permisionario.form</field>
+            <field name="model">permisionario</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <separator string="Datos del Permisonario" />
+                        <group>
+                            <group col="4" colspan="4">
+                                <field name="imagen" widget="image" class="oe_avatar oe_left" border="1" height="90" colspan="4" />
+                                <field name="nombres" placeholder="Nombre(s)" colspan="4" />
+                                <field name="apellidoP" placeholder="Apellido Paterno" colspan="2" />
+                                <field name="apellidoM" placeholder="Apellido Materno" colspan="2" />
+                                <field name="fecha_nacimiento" colspan="2" />
+                                <field name="sexo" colspan="2" />
+                            </group>
+                            <group col="4" colspan="4">
+                                <field name="telefono" placeholder="Teléfono/Celular" />
+                                <field name="curp" placeholder="Curp" />
+                                <field name="escolaridad" />
+                                <field name="rfc" placeholder="RFC" />
+                            </group>
+                            <group col="4" colspan="4">
+                                <field name="domicilio" placeholder="Domicilio" col="8" colspan="4" />
+                                <field name="no_ext" placeholder="No.Exterior" colspan="1" />
+                                <field name="no_int" placeholder="No.Interior" colspan="1" />
+                                <field name="colonia" placeholder="Colonia" />
+                                <field name="poblacion" placeholder="Población" />
+                                <field name="c_p" placeholder="C.P" />
+                            </group>
+                            <group col="4" colspan="4">
+                                <field name="EstCiv" />
+                                <field name="tynEstatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)]}" />
+                            </group>
+                            <group>
+                                <field name="id" invisible="1" />
+                            </group>
+                        </group>
+                    </sheet>
+                    <sheet>
+                        <separator string="Detalles del Permisonario" />
+                        <group>
+                            <group col="6" colspan="6">
+                                <field name="saldo" />
+                            </group>
+                            <group col="2" colspan="2">
+                                <notebook>
+                                    <page string="Puestos">
+                                        <separator string="Puestos" />
+                                        <field name="puestos_id">
+                                            <tree>
+                                                <field name="smlTIANGUIS" string="Tianguis" />
+                                                <field name="iZonaT" string="Zona" />
+                                                <field name="smlCUADRA" string="Linea" />
+                                                <field name="smlGIRO1" string="Giro" />
+                                                <field name="valor" string="Costo" />
+                                            </tree>
+                                        </field>
+                                    </page>
+                                    <page string="Asistencias">
+                                        <separator string="Asistencias y Faltas" />
+                                        <group col="4" colspan="4">
+                                            <group col="2" colspan="2">
+                                                <field name="puestos" attrs="{'invisible':[('id', '=', False)]}" domain="[('iPERMISIO', '=', id)]"/>
+                                            </group>
+                                            <group col="4">
+                                                <field name="puestos_detalles"  attrs="{'invisible':[('id', '=', False)]}" domain="[('id_puesto', '=', puestos)]">
+                                                    <tree>
+                                                        <field name="id_puesto"/>
+                                                        <field name="fecha"/>
+                                                        <field name="numero_semana"/>
+                                                        <field name="asistencia"/>
+                                                    </tree>
+                                                </field>
+                                            </group>
+                                        </group>
+                                    </page>
+                                    <page string="Pagos"></page>
+                                    <page string="Descuentos"></page>
+                                    <page string="Apercibimientos">
+                                        <separator string="Apercibimientos" />
+                                        <field name="apercibimientos_id" string="Apercibimientos">
+                                            <tree>
+                                                <field name="puesto" />
+                                                <field name="motivo" />
+                                            </tree>
+                                        </field>
+                                    </page>
+                                    <page string="Documentos">
+                                        <separator string="Documentos" />
+                                        <field name="documentos_id">
+                                            <tree>
+                                                <field name="nombre" />
+                                                <field name="documento" widget="binary" filename="nombre" />
+                                                <field name="create_date" string="Fecha de subida" />
+                                            </tree>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </group>
+                        </group>
+                    </sheet>
+                    <!--
+                            <notebook>
+                                <page string="Puestos">
+                                    <separator string="Puestos" />
+                                    <field name="puestos_id">
+                                        <tree>
+                                            <field name="smlTIANGUIS" string="Tianguis" />
+                                            <field name="iZonaT" string="Zona" />
+                                            <field name="smlCUADRA" string="Linea" />
+                                            <field name="smlGIRO1" string="Giro" />
+                                            <field name="valor" string="Costo" />
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Asistencias/Faltas">
+                                    <separator string="Asistencias y Faltas" />
+                                    <field name="asistencias">
+                                        <tree>
+                                            <field name="smlTianguis" string="Tianguis" />
+                                            <field name="puesto" string="Puesto" />
+                                            <field name="vchSemanas" string="Semana" />
+                                            <field name="tynEstado" />
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Apercibimientos">
+                                    <separator string="Apercibimientos" />
+                                    <field name="apercibimientos_id" string="Apercibimientos">
+                                        <tree>
+                                            <field name="puesto" />
+                                            <field name="motivo" />
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Descuentos">
+                                    <separator string="Descuentos" />
+                                    <field name="motivo_descuento">
+                                        <tree>
+                                            <field name="vchMotivoDescuento" />
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Estado de Cuenta">
+                                    <separator string="Estado de Cuenta" />
+                                    <field name="pagos_id" string="Estado de Cuenta">
+                                        <tree>
+                                            <field name="id" string="Folio" />
+                                            <field name="puesto" />
+                                            <field name="concepto" />
+                                            <field name="cargo" string="Cargo en Saldo" />
+                                            <field name="abono" string="Cargo en efectivo" />
+                                            <field name="date_action" string="Fecha de elaboración" />
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Costos de Tianguis">
+                                    <separator string="Puestos" />
+                                    <field name="puestos_id">
+                                        <tree>
+                                            <field name="smlTIANGUIS" string="Tianguis" />
+                                            <field name="iZonaT" string="Zona" />
+                                            <field name="smlGIRO1" string="Giro" />
+                                            <field name="valor" string="Costo" />
+                                            <button name="open_detalle" string="Julio Se la traga Completa" type="object"
+                                                class="oe_highlight"/>
+                                            <button name="cambiar_vendedor" type="object" string="Aceptar" class="oe_highlight"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string = "Documentos">
+                                    <separator string="Documentos" /> 
+                                    <field name="documentos_id">
+                                        <tree>
+                                            <field name="nombre"/>
+                                            <field name="documento" widget="binary" filename="nombre"/>
+                                            <field name="create_date" string="Fecha de subida"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        -->
+                </form>
+            </field>
+        </record>
+        <!-- ESPACIOS ABIERTOS -->
+        <record model="ir.ui.view" id="espacios_abiertos_permisionario_form">
+            <field name="name">permisionario.form</field>
+            <field name="model">permisionario</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <header></header>
+                    <sheet>
+                        <grop>
+                            <group col="4" colspan="4">
+
+                                <field name="imagen" widget="image" class="oe_avatar oe_left" border="1" height="90" colspan="4" />
+                                <field name="nombres" placeholder="Nombre(s)" colspan="4" />
+                                <field name="apellidoP" placeholder="Apellido Paterno" colspan="2" />
+                                <field name="apellidoM" placeholder="Apellido Materno" colspan="2" />
+                                <field name="fecha_nacimiento" colspan="2" />
+                                <field name="sexo" colspan="2" />
+                            </group>
+                            <group col="4" colspan="4">
+                                <field name="telefono" placeholder="Teléfono/Celular" />
+                                <field name="curp" placeholder="Curp" />
+                                <field name="escolaridad" />
+                                <field name="rfc" placeholder="RFC" />
+                            </group>
+                            <group col="4" colspan="4">
+                                <field name="domicilio" placeholder="Domicilio" col="8" colspan="4" />
+                                <field name="no_ext" placeholder="No.Exterior" colspan="1" />
+                                <field name="no_int" placeholder="No.Interior" colspan="1" />
+                                <field name="colonia" placeholder="Colonia" />
+                                <field name="poblacion" placeholder="Población" />
+                                <field name="c_p" placeholder="C.P" />
+                            </group>
+                            <group col="4" colspan="4">
+                                <field name="EstCiv" />
+                                <field name="tynEstatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)]}" />
+                            </group>
+                            <group>
+                                <field name="id" invisible="1" />
+                            </group>
+                            <group>
+                                <field name="descuento" />
+                                <field name="motivo_descuento" attrs="{'invisible':[('descuento','=', False)], 'readonly':True}" />
+                            </group>
+                            <notebook>
+                                <page string="Suplente 1">
+                                    <br />
+                                    <field name="imagen1" widget="image" class="oe_avatar oe_left" />
+                                    <group col="4" colspan="4">
+                                        <field name="nombres1" />
+                                        <field name="apellidoP1" />
+                                        <field name="apellidoM1" />
+                                    </group>
+                                </page>
+                                <page string="Suplente 2">
+                                    <br />
+                                    <field name="imagen2" widget="image" class="oe_avatar oe_left" />
+                                    <group col="4" colspan="4">
+                                        <field name="nombres2" />
+                                        <field name="apellidoP2" />
+                                        <field name="apellidoM2" />
+                                    </group>
+                                </page>
+                            </notebook>
+                            <br />
+                            <br />
+                            <notebook>
+                                <page string="Puesto">
+                                    <separator string="Puestos" />
+                                    <field name="puesto_espacios_a">
+                                        <tree>
+                                            <field name="medidas_frente" style="text-aling: center;" />
+                                            <field name="medidas_fondo" style="text-aling: center;" />
+                                            <field name="familia" string="Familia" style="text-aling: center;" />
+                                            <field name="giro" string="Giro" style="text-aling: center;" />
+                                            <field name="valor" string="Costo" style="text-aling: center;" />
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Apercibimientos">
+                                    <separator string="Apercibimientos" />
+                                    <field name="apercibimientos_id" string="Apercibimientos">
+                                        <tree>
+                                            <field name="puesto" />
+                                            <field name="motivo" />
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Descuentos">
+                                    <separator string="Descuentos" />
+                                    <field name="motivo_descuento">
+                                        <tree>
+                                            <field name="vchMotivoDescuento" />
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Permisos">
+                                    <separator string="Permisos" />
+                                    <field name="permisos_id" string="Estado de Cuenta">
+                                        <tree>
+                                            <field name="id" string="Folio" />
+                                            <field name="FechaMov" />
+                                            <field name="Movimiento" />
+                                            <field name="FechaInicial" />
+                                            <field name="FechaTermino" />
+                                            <field name="DiasPagar" />
+                                            <field name="CuotaDiaria" />
+                                            <field name="Comentario" />
+                                            <field name="Monto" />
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </grop>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+        <!-- TIANGUIS -->
+        <record model="ir.ui.view" id="tianguisgdl_permisionario_search">
+            <field name="name">Búsqueda Permisionario</field>
+            <field name="model">permisionario</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <field name="nombres" />
+                    <field name="apellidoP" />
+                    <field name="apellidoM" />
+                    <field name="curp" />
+
+                    <filter string="Estatus:Activado" name="estatus" domain="[('tynEstatus','=',1),('c_dependencia_id','=',1)]" readonly="1" />
+                </search>
+
+            </field>
+        </record>
+        <!-- ESPACIOS ABIERTOS -->
+        <record model="ir.ui.view" id="espacios_abiertos_permisionario_search">
+            <field name="name">Búsqueda Permisionario</field>
+            <field name="model">permisionario</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <field name="nombres" />
+                    <field name="apellidoP" />
+                    <field name="apellidoM" />
+                    <field name="curp" />
+
+                    <filter string="Estatus:Activado" name="estatus" domain="[('tynEstatus','=',1),('c_dependencia_id','=',4)]" readonly="1" />
+                </search>
+
+            </field>
+        </record>
+        <!-- TIANGUIS -->
+        <record model="ir.actions.act_window" id="action_view_permisionario">
+            <field name="name">Permisionario - Tianguis</field>
+            <field name="res_model">permisionario</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_estatus': 1}</field>
+        </record>
+        <!-- ESPACIOS ABIERTOS -->
+        <record model="ir.actions.act_window" id="action_view_permisionario_e">
+            <field name="name">Permisionario - Espacios Abiertos</field>
+            <field name="res_model">permisionario</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_estatus': 1}</field>
+            <field name="view_id" ref="espacios_abiertos_permisionario_tree" />
+            <field name="search_view_id" ref="espacios_abiertos_permisionario_search" />
+            <field name="form_view_id" ref="espacios_abiertos_permisionario_form" />
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_permisionario_view">
+            <field eval="1" name="sequence" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="espacios_abiertos_permisionario_tree" />
+            <field name="act_window_id" ref="action_view_permisionario_e" />
+        </record>
+
+        <record model="ir.actions.act_window.view" id="act_permisionario_form_view">
+            <field eval="2" name="sequence" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="espacios_abiertos_permisionario_form" />
+            <field name="act_window_id" ref="action_view_permisionario_e" />
+        </record>
+
+        <!-- Wizard (pestaña flotante para mostar información) que ateñe a este modelo. -->
+        <record id="permisionario_pagos_wizard_view" model="ir.ui.view">
+            <field name="name">permisionario.pagos.wizard.view</field>
+            <field name="model">permisionario.pagos.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="alert alert-warning alert-dismissable">
+                        <strong>¡Cuidado!</strong>
+                        ¿Estas seguro de liberar los materiales?
+                    </div>
+                    <footer>
+                        <button special="cancel" string="Cancelar" type="object" icon="fa-ban" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <act_window name="Información de pagos" res_model="permisionario.pagos.wizard" view_mode="form" target="new" id="action_free_proyect" />
+
+        <!-- MENU ITEM -->
+        <menuitem action="action_view_permisionario" id="menu_permisionario" parent="menu_procesos" name="Permisionario" sequence="15" />
+        <menuitem action="action_view_permisionario_e" id="menu_permisionario_e" parent="menu_procesos_e" name="Permisionario" sequence="15" />
+    </data>
+</odoo>

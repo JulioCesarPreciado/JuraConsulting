@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_r_recaudacion_form">
+            <field name="name">r_recaudacion.form</field>
+            <field name="model">r_recaudacion</field>
+            <field name="arch" type="xml">
+
+                <form string="Generear Reporte">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="r_recaudacion" string="Recaudacion">
+                                <group col="4" colspan="4">
+                                    <field name="fecha_inicial" options = "{'no_create':'1','no_create_edit':'1','no_open':'1'}" />
+                                    <field name="fecha_final" options = "{'no_create':'1','no_create_edit':'1','no_open':'1'}" />
+                                    <field name="tianguis" options = "{'no_create':'1','no_create_edit':'1','no_open':'1'}" />
+                                    <field name="recaudador" options = "{'no_create':'1','no_create_edit':'1','no_open':'1'}" />
+                                    <field name="dia"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_r_recaudacion">
+            <field name="name">Reacudado por tianguis</field>
+            <field name="res_model">r_recaudacion</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Registra un nuevo Apercibimiento</p>
+            </field>
+        </record>
+            
+        <menuitem action="action_view_r_recaudacion" id="menu_r_recaudacion" parent="menu_reportes_principal" name="Recaudado por Tianguis"
+                  sequence="15"/>
+    </data>
+</odoo>

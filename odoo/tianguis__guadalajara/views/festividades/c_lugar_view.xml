@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_lugar_festividad_tree">
+            <field name="name">lugar_festividad.tree</field>
+            <field name="model">lugar_festividad</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id" />
+                    <field name="nombre" />
+                    <field name="festividad" />
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tianguisgdl_lugar_festividad_form">
+            <field name="name">lugar_festividad.form</field>
+            <field name="model">lugar_festividad</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="festividad_information" string="Lugar de la Festividad">
+                                <group col="4" colspan="4">
+                                    <field name="festividad" colspan = "4"/>
+                                    <field name="nombre" colspan="4" placeholder = "Nombre del Lugar"/>
+                                    <field name="ubicacion" colspan="4" placeholder = "Ubicación"/>
+                                </group>
+                                <h3>Detalles del lugar</h3>
+                                <group col="4" colspan="4">
+                                    <field name="largo" />
+                                    <field name="ancho"  />
+                                    <field name="zona" />
+                                </group>
+                                <group>
+                                    <field name ="estatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)]}"/>
+                                    <field name="id" invisible="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_view_lugar_festividad">
+            <field name="name">Cátalogo - Lugares de la Festividad</field>
+            <field name="res_model">lugar_festividad</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_estatus': 1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea un nuevo lugar</p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_lugar_festividad_search">
+            <field name="name">Búsqueda de Lugares</field>
+            <field name="model">lugar_festividad</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="id" />
+                    <field name="festividad" />
+                    <field name="nombre" />
+                    <field name="zona" />
+                    <filter string="Estatus:Activado" name="estatus" domain="[('estatus','=','A')]" readonly="1" />
+                </search>
+            </field>
+        </record>
+
+        <menuitem action="action_view_lugar_festividad" id="menu_lugar_festividad" parent="menu_catalogo_f" name="Lugares de la Festividad" sequence="99" />
+    </data>
+</odoo>

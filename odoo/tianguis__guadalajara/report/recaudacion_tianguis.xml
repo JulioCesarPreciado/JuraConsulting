@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+    <report id="report_recaudacion_tianguis" string="Recaudacion Tianguis" model="r_recaudacion" report_type="qweb-pdf" name="tianguis__guadalajara.report_recaudacion_tianguis_template" />
+    <template id="report_recaudacion_tianguis_template">
+      <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="doc">
+          <div class="page">
+            <h2 class="text-center">Registro de Recaudacion</h2>
+            <p>
+              Fecha:
+              <span t-field="doc.fecha_inicial" />
+               A
+              <span t-field="doc.fecha_final" />
+            </p>
+            <table class="table table-bordered" style="width:100%;">
+              <tbody>
+                <t t-set="pagos" t-value="doc.run_sql(doc.fecha_inicial,doc.fecha_final,doc.recaudador.id,doc.dia,doc.tianguis.id)" />
+                <t t-foreach="pagos" t-as="line">
+                  <tr>
+                    <td colspan="7"><span t-esc="line[9]" /></td>
+                  </tr>
+                  <tr>
+                      <th style="vertical-align: middle;">Dia</th>
+                      <th style="vertical-align: middle;">Tianguis</th>
+                      <th style="vertical-align: middle;">Zona</th>
+                      <th style="vertical-align: middle;">Recaudador</th>
+                      <th style="vertical-align: middle;">Ingreso</th>
+                      <th style="vertical-align: middle;">Meta</th>
+                      <th style="vertical-align: middle;">Porcentaje</th>
+                    </tr>
+                  <tr>
+                    <td>
+                      <span t-if="line[6]==1">Lunes</span>
+                      <span t-if="line[6]==2">Martes</span>
+                      <span t-if="line[6]==3">Miercoles</span>
+                      <span t-if="line[6]==4">Jueves</span>
+                      <span t-if="line[6]==5">Viernes</span>
+                      <span t-if="line[6]==6">Sabado</span>
+                      <span t-if="line[6]==7">Domingo</span>
+                    </td>
+                    <td>
+                      <span t-esc="line[0]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[1]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[2]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[3]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[4]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[5]" />
+                    </td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+            <!--
+            <div>
+              <t t-set="totales" t-value="doc.sum_valor(doc.fecha_reporte,doc.nombre)" />
+              <p>
+                Precio Total de Puestos:
+                <span t-esc="totales[0]" />
+              </p>
+              <p>
+                Cargos Totales en Puestos:
+                <span t-esc="totales[1]" />
+              </p>
+              <p>
+                Abonos Totales de Puestos:
+                <span t-esc="totales[2]" />
+              </p>
+              <p>
+                Permisionarios con Descuentos:
+                <span t-esc="totales[3]" />
+              </p>
+              <p>
+                Permisionarios sin Descuentos:
+                <span t-esc="totales[4]" />
+              </p>
+              <p>
+                Permisionarios Fijos:
+                <span t-esc="totales[5]" />
+              </p>
+              <p>
+                Permisionarios Roleros:
+                <span t-esc="totales[6]" />
+              </p>
+            </div>
+            -->
+          </div>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>

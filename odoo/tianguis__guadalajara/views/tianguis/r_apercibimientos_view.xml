@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_r_apercibimientos_tree">
+            <field name="name">r_apercibimientos.tree</field>
+            <field name="model">r_apercibimientos</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id" placeholder="ID"/>
+                    <field name="permisionario" placeholder="Permisionario"/>
+                    <field name="puesto" placeholder="Puesto"/>
+                    <field name="motivo" placeholder="Motivo"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_r_apercibimientos_form">
+            <field name="name">r_apercibimientos.form</field>
+            <field name="model">r_apercibimientos</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="apercibimientos" string="Apercibimientos">
+                                <group col="4" colspan="4">
+                                    <field name="permisionario" placeholder="Permisionario"/>
+                                    <field name="puesto" placeholder="Puesto"/>
+                                    <field name="motivo" placeholder="Motivo"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_r_apercibimientos">
+            <field name="name">Apercibimientos</field>
+            <field name="res_model">r_apercibimientos</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Registra un nuevo Apercibimiento</p>
+            </field>
+        </record>
+            
+        <menuitem action="action_view_r_apercibimientos" id="menu_r_apercibimientos" parent="menu_consultas" name="Apercibimientos"
+                  sequence="15"/>
+    </data>
+</odoo>

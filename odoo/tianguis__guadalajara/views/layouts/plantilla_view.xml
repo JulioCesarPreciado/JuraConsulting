@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <report id="report_plantilla" string="Plantilla" report_type="qweb-pdf" name="tianguis__guadalajara.report_plantilla_template" />
+         <template id="report_tarjeton_template">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                    <style>
+                        h3,h5,span {
+                            text-align: center;}                           
+                    </style>
+                        <div class="header">
+                            <div class="col-xs-4">
+                                <img style="width: 150px; height: 100px; margin-top: 0px;float:left" src="C:\Program Files (x86)\Odoo 10.0\server\odoo\addons\Tianguis\Tianguis\GDL.png" />
+                                <p>Aquí va el día</p>
+                            </div>
+                            <div class="col-xs-8">
+                                <h3>DIR. GRAL DE TIANGUIS Y COMERCIO EN E.A. (2018-2021)</h3>
+                                <h3>LISTADO</h3>
+                                <br></br>
+                                <br></br>
+                                <p>Día:</p>
+                                <p>Tianguis: </p>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

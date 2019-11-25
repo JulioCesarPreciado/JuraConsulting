@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="tianguisgdl_c_zona_tianguis_tree">
+        <field name="name">c_zona_tianguis.tree</field>
+        <field name="model">c_zona_tianguis</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="id" placeholder="ID" />
+                <field name="smlTianguis"/>
+                <field name="smlZonaTianguis"/>
+                <field name="CallePrincipal"/>
+                <field name="estatus"/>
+            </tree>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="tianguisgdl_c_zona_tianguis_form">
+        <field name="name">c_zona_tianguis.form</field>
+        <field name="model">c_zona_tianguis</field>
+        <field name="arch" type="xml">
+
+            <form string="Agregar Zonas">
+                <sheet>
+                    <notebook col="14">
+                        <page name="Zonas Tianguis" string="Zona Tianguis">
+                            <group col="4">
+                                <field name="smlTianguis" placeholder="Seleccione el Tianguis" colspan="4" required = "1" />
+                                <field name="chZonaTianguis" placeholder="Línea" required = "1"/>
+                                <field name="smlZonaTianguis" placeholder="Zona" required = "1"/>
+                                <field name="CallePrincipal" domain="[('smlTianguis', '=', smlTianguis )]" placeholder="Calle Principal" colspan="4" required = "1" widget='Many2one' />
+                                <field name="CalleCruceIni" placeholder="Calle Cruce Inicial" readonly = "1"  />
+                                <field name="CalleCruceFin" placeholder="Calle Cruce Final" readonly = "1"  />
+                                <field name="CalleCruceIni_copy" placeholder="Calle Cruce Inicial" invisible = "1"  />
+                                <field name="CalleCruceFin_copy" placeholder="Calle Cruce Final" invisible = "1"  />
+                                <field name="estatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)]}" />
+                            </group>
+                            <group>
+                                <field name="id"  invisible="1"/>
+                            </group>                      
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="tianguisgdl_c_zona_tianguis_search">
+            <field name="name">Búsqueda Zonas de Tianguis</field>
+            <field name="model">c_zona_tianguis</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="smlTianguis" />
+                    <field name="smlZonaTianguis" />
+                    <field name="CallePrincipal" />
+                    <filter string="Estatus:Activado" name="estatus" domain="[('estatus','=','A')]" />
+                </search>
+            </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_view_c_zona_tianguis">
+        <field name="name">Catálogo - Zonas de Tianguis</field>
+        <field name="res_model">c_zona_tianguis</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_estatus': 1}</field>
+    </record>
+    <menuitem action="action_view_c_zona_tianguis" id="menu_zonas" parent="menu_catalogo" name="Zonas de Tianguis" sequence="99"/>
+</odoo>

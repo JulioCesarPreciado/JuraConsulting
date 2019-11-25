@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_juegos_mecanicos_tree">
+            <field name="name">c_juegos_mecanicos.tree</field>
+            <field name="model">c_juegos_mecanicos</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" />
+                    <field name="nombre" />
+                    <field name="estatus" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_juegos_mecanicos_form">
+            <field name="name">c_juegos_mecanicos.form</field>
+            <field name="model">c_juegos_mecanicos</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Juegos Mecánicos">
+                                <group col="4" colspan="4">
+                                    <field name="nombre" placeholder="Nombre del Juego Mecánico" required = "1" />
+                                    <field name="estatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)],'required':[('tiene_dictamen', '!=', False)]}" />
+                                </group>
+                                <group>
+                                    <field name="id" invisible="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_juegos_mecanicos">
+            <field name="name">Cátalogo - Juegos Mecánicos</field>
+            <field name="res_model">c_juegos_mecanicos</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_estatus': 1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nuevo Juego</p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_juegos_mecanicos_search">
+            <field name="name">Búsqueda Festividades</field>
+            <field name="model">c_juegos_mecanicos</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="id" />
+                    <field name="nombre" />
+                    <filter string="Estatus:Activado" name="estatus" domain="[('estatus','=','A')]" readonly="1" />
+                </search>
+
+            </field>
+        </record>
+
+        <menuitem action="action_view_c_juegos_mecanicos" id="menu_c_juegos_mecanicos" parent="menu_catalogo_f" name="Juegos Mecánicos" sequence="99" />
+
+    </data>
+
+</odoo>

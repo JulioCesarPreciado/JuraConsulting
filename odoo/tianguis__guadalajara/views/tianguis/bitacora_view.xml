@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_bitacora_tree">
+            <field name="name">bitacora.tree</field>
+            <field name="model">bitacora</field>
+            <field name="arch" type="xml">
+
+                <tree create = "false">
+                    <field name="id"/>
+                    <field name="Operacion" string = "Operación"/>
+                    <field name="Tabla"/>
+                    <field name="Usuario"/>
+                    <field name="dttFechaBitacora" string ="Fecha del Movimiento"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_bitacora_form">
+            <field name="name">bitacora.form</field>
+            <field name="model">bitacora</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura" create ="false">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information"
+                                  string="Tianguis">
+                                <group col="4" colspan="4">
+                                    <field name="id" placeholder = "ID" />
+                                    <field name="Operacion" placeholder = "Operación"/>
+                                    <field name="Tabla" placeholder = "Tabla"/>
+                                    <field name="Usuario" placeholder = "Usuario"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_bitacora">
+            <field name="name">Bitacora</field>
+            <field name="res_model">bitacora</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Nueva Bitácora</p>
+            </field>
+        </record>
+        
+
+        <menuitem action="action_view_bitacora" id="menu_bitacora" parent="menu_consultas" name="Bitácora"
+                  sequence="25"/>
+
+    </data>
+
+</odoo>

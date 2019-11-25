@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!--menu main-->
+    <menuitem id="tianguisgdl_menu_principal" name="TianguisGDL" sequence="5" />
+    <!--menu Tianguis-->
+    <menuitem parent="tianguisgdl_menu_principal" id="menu_tianguis_principal" name="Tianguis" sequence="10" />
+    <!--menu Espacios Abiertos-->
+    <menuitem parent="tianguisgdl_menu_principal" id="menu_espacios_principal" name="Espacios Abiertos" sequence="10" />
+    <!-- menu Reportes de sistemas -->
+    <menuitem parent="tianguisgdl_menu_principal" id="menu_reportes_principal" name="Reportes" sequence="10" />
+    <!-- menu Festividades -->
+    <menuitem parent="tianguisgdl_menu_principal" id="menu_festividades_principal" name="Festividades" sequence="10" />
+    <!--menu Catalogos t-->
+    <menuitem parent="menu_tianguis_principal" id="menu_catalogo" name="Catalogos" sequence="10" />
+    <!--menu Procesos t-->
+    <menuitem parent="menu_tianguis_principal" id="menu_procesos" name="Procesos" sequence="10" />
+    <!--menu Consultas t-->
+    <menuitem parent="menu_tianguis_principal" id="menu_consultas" name="Consultas" sequence="10" />
+    <!--menu Catalogos t-->
+    <menuitem parent="menu_espacios_principal" id="menu_catalogo_e" name="Catalogos" sequence="10" />
+    <!--menu Procesos t-->
+    <menuitem parent="menu_espacios_principal" id="menu_procesos_e" name="Procesos" sequence="10" />
+    <!--menu Consultas t-->
+    <menuitem parent="menu_espacios_principal" id="menu_consultas_e" name="Consultas" sequence="10" />
+    <!--menu Procesos t-->
+    <menuitem parent="menu_festividades_principal" id="menu_procesos_f" name="Procesos" sequence="10" />
+    <!--menu Consultas t-->
+    <menuitem parent="menu_festividades_principal" id="menu_consultas_f" name="Consultas" sequence="10" />
+    <!--menu Catalogos t-->
+    <menuitem parent="menu_festividades_principal" id="menu_catalogo_f" name="Catalogos" sequence="10" />
+</odoo>

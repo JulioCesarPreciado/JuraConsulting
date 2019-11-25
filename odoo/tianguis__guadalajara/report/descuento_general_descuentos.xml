@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- declaramos las propiedades del papel a4 es el tamaño carta -->
+
+        <!-- <record id="diferentes_descuentos" model="report.paperformat">
+            <field name="name">LISTADO GENERAL</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">20</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">3</field>
+            <field name="dpi">90</field>
+        </record> -->
+
+
+        <template id="reporte_listado_general">
+            <!-- <t t-call="garantias.injetech_external_layout_header"/> -->
+            <t t-call="report.html_container">
+            <!-- t-as="" es el enombre con el que mandamos a llamar las variables del modelo puede ser calquiera, pero el standar es doc -->
+                <t t-foreach="docs" t-as="doc">
+            <!-- A continuacion creamos el header, todo el documento de basa en bootstrap y sus columnas -->
+                    <div class="header" style="margin: 0 50px">
+                        <div class="row">       
+                            <div class="col-xs-3">
+                            <!-- en caso de ir imágen así se declararía, en este caso va del lado izquierdo en las primeras 3 col
+                            el src la direccion de la imágen -->
+                                <!-- <img style="width: 200px; height: 100px; margin-top: 40px;" src="/garantias/static/src/img/cio2.png"/> -->
+                            </div>
+                            <!-- los encabezados al centro -->
+                            <div class="col-xs-6" style="text-align: center; margin-top: 60px">
+                                <h1 style="font-size: 18px;">DIR. GRAL DE TIANGUIS Y COMERCIO EN E.A. (2018-2021)</h1>
+                                <p style="text-align: center">LISTADO GENERAL DE LOA DIFERENTES DESCUENTOS</p>
+                            </div>
+                            <div class="col-xs-3">
+                                <!-- <img src="/garantias/static/src/img/injetech.png"/> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ahora procedemos a declarar el page con el márgen -->
+                    
+                    <div class="page"  style="margin: 0 50px">
+
+                    <!-- de ser necesario colocamos style -->
+                            <!-- <style>
+                                table, th, td {
+                                font-weight: normal;
+                                text-align: center; 
+                                font-size: 8px;
+                                padding: 2px 0;
+                                border: 1px solid black;
+                                }
+                            </style> -->
+            
+                        <!-- declaramos la tabla donde vamos a trabajar
+                        Comenzamos por el thead colocando los encabezados
+                        finzalizamos con el tbody -->
+                            <table style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="background: black; color: white; vertical-align: middle; border-right-color: #FFFFFF !important;" rowspan="2">TIPO</th>
+                                        <th style="background: black; color: white; vertical-align: middle; border-right-color: #FFFFFF !important;" rowspan="2">CANTIDAD</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <!-- de igual forma colocamos el id del freach que con el que vamos a recorrer y de igual forma t-as es la variable de acceso
+                                en este caso puede ser igual el nombre que sea -->
+                                        <!-- <tr>
+                                            <td>SIN DESCUENTO</td>
+                                            <td><span></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>DISCAPACITADO</td>
+                                            <td><span t-field="doc.campo a acceder"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>PESNSIONADO</td>
+                                            <td><span t-field="doc.campo a acceder"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>SUJETO A REVISION</td>
+                                            <td><span t-field="doc.campo a acceder"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>TERCERA EDAD</td>
+                                            <td><span t-field="doc.campo a acceder"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>VIUDA</td>
+                                            <td><span t-field="doc.campo a acceder"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td>TOTAL</td>
+                                            <td><span t-field="doc.campo a acceder"/></td>
+                                        </tr> -->
+                                    
+                                </tbody>                 
+                            </table>
+                                                    
+                            <div class="footer">
+                                <div class="text-center" >
+                                    <p>Aqui pueden poner informacion</p>
+                                    <p>de contacto </p>
+                                    <p>telefonos y todo el rollo</p>     
+                                </div>
+                            </div>  
+                     </div>
+            </t>
+            </t>   
+        </template>
+
+
+
+<!-- colocamos los datos del reporte  -->
+        <report
+            id="id_listado_general_report"
+            model="permisionario"
+            string="Diferentes Descuentos"
+            report_type="qweb-pdf"
+            name="reporte_listado_general"
+            file="id_listado_general_report"   
+        />
+
+    </data>
+</odoo>

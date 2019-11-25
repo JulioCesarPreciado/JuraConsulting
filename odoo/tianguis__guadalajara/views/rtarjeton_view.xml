@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <report id="report_tarjeton" string="Tarjetón" model="permisionario" report_type="qweb-pdf" name="tianguis__guadalajara.report_tarjeton_template" />
+        <template id="report_tarjeton_template">
+            <t t-call="report.html_container">
+                <!-- <t t-call="report.external_layout"> -->
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <style>
+                                h3,h5,span {
+                                    text-align: center;
+                                                        }                           
+                        </style>
+                        <header>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <img style="width: 150px; height: 100px; margin-top: 0px;float:left" src="C:\Proyectos\PGM\Tianguis\tianguis__guadalajara\Espac.png" />
+                                </div>
+                                <div class="col-xs-4">
+                                    <h3 style="margin: 0; padding-top: 12px;">No.Permisionario</h3>
+                                    <h3 style="border:2px solid; border-radius:5px; padding-top:8px; padding-bottom:8px;">
+                                        <span t-field="doc.id" />
+                                    </h3>
+                                    <h3 style="color:blue">Tarjetón Tianguis</h3>
+                                    <img style="width: 100%; height: 4px; float:right" src="C:\Proyectos\PGM\Tianguis\tianguis__guadalajara\linea.png" />
+                                    <p style="text-align:center">Vigente hasta Diciembre de 2020</p>
+                                </div>
+                                <div class="col-xs-4">
+                                    <img style="width: 150px; height: 100px; margin-top: 0px;float:right" src="C:\Proyectos\PGM\Tianguis\tianguis__guadalajara\GDL.png" />
+                                </div>
+                            </div>
+                        </header>
+                        <body>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <span t-field="doc.imagen" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot; }" style="max-height:120px;" />
+                                </div>
+                                <div class="col-xs-8">
+                                    <!--Suplentes-->
+                                    <t t-set="suplente1" t-value="doc.run_sql('select &quot;vchSUPLENTE1&quot; from permisionario INNER JOIN puestos ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="suplente2" t-value="doc.run_sql('select &quot;vchSUPLENTE2&quot; from permisionario INNER JOIN puestos ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <!-- <thead> 
+                                        <t t-set="giro_lunes" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_martes" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_miercoles" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_jueves" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_viernes" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_sabado" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_domingo" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <thead>-->
+                                            <tr>
+                                                <td scope="col" colspan="2">Titular</td>
+                                                <th scope="col" colspan="6">
+                                                    <span t-field="doc.nombres" />
+                                                    <span t-field="doc.apellidoP" />
+                                                    <span t-field="doc.apellidoP" />
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col" colspan="2">Suplente 1</td>
+                                                <th scope="col" colspan="6">
+                                                    <span t-esc="suplente1" />
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <td scope="col" colspan="2">Suplente 2</td>
+                                                <th scope="col" colspan="6">
+                                                    <span t-esc="suplente2" />
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <!-- FOLIO -->
+                                    <t t-set="folio_lunes" t-value="doc.run_sql('select puestos.&quot;id&quot; from puestos INNER JOIN permisionario on permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="folio_martes" t-value="doc.run_sql('select puestos.&quot;id&quot; from puestos INNER JOIN permisionario on permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="folio_miercoles" t-value="doc.run_sql('select puestos.&quot;id&quot; from puestos INNER JOIN permisionario on permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="folio_jueves" t-value="doc.run_sql('select puestos.&quot;id&quot; from puestos INNER JOIN permisionario on permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="folio_viernes" t-value="doc.run_sql('select puestos.&quot;id&quot; from puestos INNER JOIN permisionario on permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="folio_sabado" t-value="doc.run_sql('select puestos.&quot;id&quot; from puestos INNER JOIN permisionario on permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="folio_domingo" t-value="doc.run_sql('select puestos.&quot;id&quot; from puestos INNER JOIN permisionario on permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <!-- TIANGUIS -->
+                                    <t t-set="p_lunes" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="p_martes" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="p_miercoles" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="p_jueves" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="p_viernes" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="p_sabado" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="p_domingo" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <!-- UBICACIÓN -->
+                                    <t t-set="u_lunes" t-value="doc.run_sql('select calle_ubicacion_id from c_tianguis INNER JOIN puestos ON puestos.&quot;smlTIANGUIS&quot; = c_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="u_martes" t-value="doc.run_sql('select calle_ubicacion_id from c_tianguis INNER JOIN puestos ON puestos.&quot;smlTIANGUIS&quot; = c_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="u_miercoles" t-value="doc.run_sql('select calle_ubicacion_id from c_tianguis INNER JOIN puestos ON puestos.&quot;smlTIANGUIS&quot; = c_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="u_jueves" t-value="doc.run_sql('select calle_ubicacion_id from c_tianguis INNER JOIN puestos ON puestos.&quot;smlTIANGUIS&quot; = c_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="u_viernes" t-value="doc.run_sql('select calle_ubicacion_id from c_tianguis INNER JOIN puestos ON puestos.&quot;smlTIANGUIS&quot; = c_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="u_sabado" t-value="doc.run_sql('select calle_ubicacion_id from c_tianguis INNER JOIN puestos ON puestos.&quot;smlTIANGUIS&quot; = c_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="u_domingo" t-value="doc.run_sql('select calle_ubicacion_id from c_tianguis INNER JOIN puestos ON puestos.&quot;smlTIANGUIS&quot; = c_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <!--GIRO-->
+                                    <t t-set="giro_lunes" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="giro_martes" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="giro_miercoles" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="giro_jueves" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="giro_viernes" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="giro_sabado" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="giro_domingo" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <!--LÍNEA-->
+                                    <t t-set="linea_lunes" t-value="doc.run_sql('select &quot;chZonaTianguis&quot; from c_zona_tianguis INNER JOIN puestos on puestos.&quot;iZonaT&quot; = c_zona_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="linea_martes" t-value="doc.run_sql('select &quot;chZonaTianguis&quot; from c_zona_tianguis INNER JOIN puestos on puestos.&quot;iZonaT&quot; = c_zona_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="linea_miercoles" t-value="doc.run_sql('select &quot;chZonaTianguis&quot; from c_zona_tianguis INNER JOIN puestos on puestos.&quot;iZonaT&quot; = c_zona_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="linea_jueves" t-value="doc.run_sql('select &quot;chZonaTianguis&quot; from c_zona_tianguis INNER JOIN puestos on puestos.&quot;iZonaT&quot; = c_zona_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="linea_viernes" t-value="doc.run_sql('select &quot;chZonaTianguis&quot; from c_zona_tianguis INNER JOIN puestos on puestos.&quot;iZonaT&quot; = c_zona_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="linea_sabado" t-value="doc.run_sql('select &quot;chZonaTianguis&quot; from c_zona_tianguis INNER JOIN puestos on puestos.&quot;iZonaT&quot; = c_zona_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="linea_domingo" t-value="doc.run_sql('select &quot;chZonaTianguis&quot; from c_zona_tianguis INNER JOIN puestos on puestos.&quot;iZonaT&quot; = c_zona_tianguis.id INNER JOIN permisionario ON permisionario.id = puestos.&quot;iPERMISIO&quot; where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <!--INICIA-->
+                                    <t t-set="inicia_lunes" t-value="doc.run_sql('select &quot;smmINICIA&quot; from puestos where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="inicia_martes" t-value="doc.run_sql('select &quot;smmINICIA&quot; from puestos where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="inicia_miercoles" t-value="doc.run_sql('select &quot;smmINICIA&quot; from puestos where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="inicia_jueves" t-value="doc.run_sql('select &quot;smmINICIA&quot; from puestos where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="inicia_viernes" t-value="doc.run_sql('select &quot;smmINICIA&quot; from puestos where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="inicia_sabado" t-value="doc.run_sql('select &quot;smmINICIA&quot; from puestos where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="inicia_domingo" t-value="doc.run_sql('select &quot;smmINICIA&quot; from puestos where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <!--TERMINA-->
+                                    <t t-set="termina_lunes" t-value="doc.run_sql('select &quot;smmTERMINA&quot; from puestos where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="termina_martes" t-value="doc.run_sql('select &quot;smmTERMINA&quot; from puestos where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="termina_miercoles" t-value="doc.run_sql('select &quot;smmTERMINA&quot; from puestos where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="termina_jueves" t-value="doc.run_sql('select &quot;smmTERMINA&quot; from puestos where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="termina_viernes" t-value="doc.run_sql('select &quot;smmTERMINA&quot; from puestos where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="termina_sabado" t-value="doc.run_sql('select &quot;smmTERMINA&quot; from puestos where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="termina_domingo" t-value="doc.run_sql('select &quot;smmTERMINA&quot; from puestos where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <!--TOTAL-->
+                                    <t t-set="longitud_lunes" t-value="doc.run_sql('select &quot;smmLONGITUD&quot; from puestos where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="longitud_martes" t-value="doc.run_sql('select &quot;smmLONGITUD&quot; from puestos where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="longitud_miercoles" t-value="doc.run_sql('select &quot;smmLONGITUD&quot; from puestos where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="longitud_jueves" t-value="doc.run_sql('select &quot;smmLONGITUD&quot; from puestos where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="longitud_viernes" t-value="doc.run_sql('select &quot;smmLONGITUD&quot; from puestos where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="longitud_sabado" t-value="doc.run_sql('select &quot;smmLONGITUD&quot; from puestos where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    <t t-set="longitud_domingo" t-value="doc.run_sql('select &quot;smmLONGITUD&quot; from puestos where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+
+                                    <br></br>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <th scope="col" colspan="1">FOLIO</th>
+                                            <th scope="col" colspan="1">TIANGUIS</th>
+                                            <th scope="col" colspan="4">UBICACIÓN</th>
+                                            <th scope="col" colspan="1">DÍA</th>
+                                            <th scope="col" colspan="1">GIRO</th>
+                                            <th scope="col" colspan="1">LÍNEA</th>
+                                            <th scope="col" colspan="1">INICIA</th>
+                                            <th scope="col" colspan="1">TERMINA</th>
+                                            <th scope="col" colspan="1">TOTAL</th>
+                                        </thead>
+                                        <tbody>
+                                            <t t-if="p_lunes != 'p'">
+                                                <tr>
+                                                    <td colspan="1">
+                                                        <span t-esc="folio_lunes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="p_lunes" />
+                                                    </td>
+                                                    <td colspan="4">
+                                                        <span t-esc="u_lunes" />
+                                                    </td>
+                                                    <td colspan="1">LUNES</td>
+                                                    <td colspan="1">
+                                                        <span t-esc="giro_lunes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="linea_lunes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="inicia_lunes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="termina_lunes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="longitud_lunes" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+
+                                            <t t-if="p_martes != 'p' ">
+                                                <tr>
+                                                    <td colspan="1">
+                                                        <span t-esc="folio_martes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="p_martes" />
+                                                    </td>
+                                                    <td colspan="4">
+                                                        <span t-esc="u_martes" />
+                                                    </td>
+                                                    <td colspan="1">MARTES</td>
+                                                    <td colspan="1">
+                                                        <span t-esc="giro_martes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="linea_martes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="inicia_martes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="termina_martes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="longitud_martes" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+
+                                            <t t-if="p_miercoles != 'p'">
+                                                <tr>
+                                                    <td colspan="1">
+                                                        <span t-esc="folio_miercoles" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="p_miercoles" />
+                                                    </td>
+                                                    <td colspan="4">
+                                                        <span t-esc="u_miercoles" />
+                                                    </td>
+                                                    <td colspan="1">MIÉRCOLES</td>
+                                                    <td colspan="1">
+                                                        <span t-esc="giro_miercoles" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="linea_miercoles" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="inicia_miercoles" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="termina_miercoles" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="longitud_miercoles" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+
+                                            <t t-if="p_jueves != 'p'">
+                                                <tr>
+                                                    <td colspan="1">
+                                                        <span t-esc="folio_jueves" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="p_jueves" />
+                                                    </td>
+                                                    <td colspan="4">
+                                                        <span t-esc="u_jueves" />
+                                                    </td>
+                                                    <td colspan="1">JUEVES</td>
+                                                    <td colspan="1">
+                                                        <span t-esc="giro_jueves" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="linea_jueves" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="inicia_jueves" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="termina_jueves" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="longitud_jueves" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+
+                                            <t t-if="p_viernes != 'p'">
+                                                <tr>
+                                                    <td colspan="1">
+                                                        <span t-esc="folio_viernes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="p_viernes" />
+                                                    </td>
+                                                    <td colspan="4">
+                                                        <span t-esc="u_viernes" />
+                                                    </td>
+                                                    <td colspan="1">VIERNES</td>
+                                                    <td colspan="1">
+                                                        <span t-esc="giro_viernes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="linea_viernes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="inicia_viernes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="termina_viernes" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="longitud_viernes" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+
+                                            <t t-if="p_sabado != 'p'">
+                                                <tr>
+                                                    <td colspan="1">
+                                                        <span t-esc="folio_sabado" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="p_sabado" />
+                                                    </td>
+                                                    <td colspan="4">
+                                                        <span t-esc="u_sabado" />
+                                                    </td>
+                                                    <td colspan="1">SÁBADO</td>
+                                                    <td colspan="1">
+                                                        <span t-esc="giro_sabado" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="linea_sabado" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="inicia_sabado" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="termina_sabado" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="longitud_sabado" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+
+                                            <t t-if="p_domingo != 'p'">
+                                                <tr>
+                                                    <td colspan="1">
+                                                        <span t-esc="folio_domingo" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="p_domingo" />
+                                                    </td>
+                                                    <td colspan="4">
+                                                        <span t-esc="u_domingo" />
+                                                    </td>
+                                                    <td colspan="1">DOMINGO</td>
+                                                    <td colspan="1">
+                                                        <span t-esc="giro_domingo" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="linea_domingo" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="inicia_domingo" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="termina_domingo" />
+                                                    </td>
+                                                    <td colspan="1">
+                                                        <span t-esc="longitud_domingo" />
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <img style="width: 150px; height: 100px; margin-top: 0px;float:left" src="C:\Proyectos\PGM\Tianguis\tianguis__guadalajara\E.png" />
+                                </div>
+                                <div class="col-xs-5">
+                                    <br></br>
+                                    <br></br>
+                                    <br></br>
+                                    <p style="font-size:14px;">MTRA. BLANCA ESTELA VALDEZ GRANADO</p>
+                                    <p style="font-size:10px;">Dirección de Tianguis y Comercio en Espacios Abiertos</p>
+                                </div>
+                                <div class="col-xs-4">
+                                    <h3 style="border:2px solid; border-radius:5px; padding-top:8px; padding-bottom:8px; font-size:35px;">
+                                        <span t-field="doc.id" />
+                                    </h3>
+                                </div>
+                            </div>
+                        </body>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

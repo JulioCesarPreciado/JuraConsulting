@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_puestos_tree">
+            <field name="name">puestos.tree</field>
+            <field name="model">puestos</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" string="Folio" />
+                    <field name="iZonaT" />
+                    <field name="smlTIANGUIS" />
+                    <field name="iPERMISIO" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_puestos_form">
+            <field name="name">puestos.form</field>
+            <field name="model">puestos</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <header>
+                        <button name="imprime_ficha" string="Imprimir" type="object" />
+                    </header>
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Información general del puesto">
+                                <group col="4" colspan="4">
+                                    <field name="id" readonly="1" string="Folio" />
+                                    <field name="tynDia" placeholder="Seleccione el día" attrs="{'readonly':[('id', '=', True)],'invisible':[('id', '=', True)]}" />
+                                    <field name="smlTIANGUIS" placeholder="Seleccione el Tianguis" domain="[('tynDia', '=', tynDia)]" attrs="{'readonly':[('id', '=', True)],'invisible':[('id', '=', True)]}" />
+                                    <field name="iPERMISIO" placeholder="Seleccione el Permisionario" domain="[('c_dependencia_id', '=', 1)]" />
+                                </group>
+                                <group>
+                                    <field name="tynestatus" placeholder="Seleccione el estatus" />
+                                    <field name="tynVacante" placeholder="Vacante" />
+                                </group>
+                            </page>
+                        </notebook>
+                        <notebook>
+                            <page name="personal_information" string="Información detallada del puesto">
+                                <br />
+                                <div class="row">
+                                    <div class="col-lg-4"></div>
+                                    <div class="col-lg-4">
+                                        <h5>Ubicación: </h5>
+                                        <field name="iZonaT" domain="[('smlTianguis', '=', smlTIANGUIS)]" placeholder="Seleccione la Zona" />
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <h5>Inicia: </h5>
+                                        <field name="smmINICIA" placeholder="Seleccione la calle" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <h5>Calle: </h5>
+                                        <field name="smlCUADRA" readonly = "True" store = "True"/>
+                                        <field name="smlCUADRA_copy" invisible = "True"/>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <h5>Termina: </h5>
+                                        <field name="smmTERMINA" placeholder="Seleccione la calle..." />
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <h5>Longitud: </h5>
+                                        <field name="smmLONGITUD" placeholder="Longitud" readonly = "True" store = "True" />
+                                        <field name="smmLONGITUD_copy" invisible = "True"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <h5>Entre la calle: </h5>
+                                        <field name="vchCALLE1" placeholder="Seleccione la calle..." readonly = "True" store = "True"/>
+                                        <field name="vchCALLE1_copy" invisible = "True" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <h5>Y: </h5>
+                                        <field name="vchCALLE2" placeholder="Seleccione la calle..." readonly = "True" store = "True"/>
+                                        <field name="vchCALLE2_copy" invisible = "True" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <h4>Costo del puesto</h4>
+                                        <field name="valor" placeholder="Costo del puesto" readonly = "True" store = "True"/>
+                                        <field name="valor_copy" invisible = "True" />
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h5>Giro Principal: </h5>
+                                        <field name="smlGIRO1" placeholder="Seleccione el giro..." />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h5>Situación: </h5>
+                                        <field name="tynSITUACION" placeholder="Seleccione la situación..." />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h5>1er Suplente: </h5>
+                                        <field name="vchSUPLENTE1" placeholder="Seleccione el suplente numero 1" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <h5>2do Suplente: </h5>
+                                        <field name="vchSUPLENTE2" placeholder="Seleccione el suplente numero 2" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <field name="id" invisible="1" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h5>Comentarios: </h5>
+                                        <field name="vchCOMENTARIO" placeholder="Escriba el comentario" />
+                                    </div>
+                                </div>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_puestos_search">
+            <field name="name">Búsqueda Puestos</field>
+            <field name="model">puestos</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <field name="tynDia" />
+                    <field name="smlTIANGUIS" />
+                    <field name="iZonaT" />
+
+                    <filter string="Permisionarios:Tianguis" name="permisionarios" domain="[('iPERMISIO.c_dependencia_id','=',1)]" />
+                </search>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_puestos">
+            <field name="name">Puestos</field>
+            <field name="res_model">puestos</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_permisionarios': 1}</field>
+        </record>
+
+        <menuitem action="action_view_puestos" id="menu_puestos" parent="menu_procesos" name="Puestos" sequence="27" />
+    </data>
+</odoo>

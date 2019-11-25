@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_movimientos_puestos_tree">
+            <field name="name">movimientos_puestos.tree</field>
+            <field name="model">movimientos_puestos</field>
+            <field name="arch" type="xml">
+
+                <tree create="false" edit="false">
+                    <field name="id" string="Folio"/>
+                    <field name="fec" string="Fecha Movimiento"/>
+                    <field name="movimiento"/>
+                    <field name="iPermisionario"/>
+                    <field name="smlTianguis"/>
+                    <field name="iZonaTianguis"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_movimientos_puestos">
+            <field name="name">Movimientos Puestos</field>
+            <field name="res_model">movimientos_puestos</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem action="action_view_movimientos_puestos" id="menu_movimientos_puestos" parent="menu_consultas" name="Movimientos Puesto"
+                  sequence="20"/>
+    </data>
+</odoo>

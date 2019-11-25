@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_lista_espera_tree">
+            <field name="name">lista_espera.tree</field>
+            <field name="model">lista_espera</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="iPermisionario" string="Permisionario" />
+                    <field name="smlTianguis" string="Tianguis" />
+                    <field name="smlZonaTianguis" string="Zona Tianguis" />
+                    <field name="vchFolioSemana" string="Folio Semana" />
+                </tree>
+
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tianguisgdl2_lista_espera_form">
+            <field name="name">lista_espera.form</field>
+            <field name="model">lista_espera</field>
+            <field name="arch" type="xml">
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="lista_espera" string="lista_espera">
+                                <group col="4" colspan="4">
+                                    <field name="iPermisionario" string="Permisionario" readonly = "1"/>
+                                    <field name="vchFolioSemana" string="Folio Semana" readonly = "1" />
+                                    <field name="smlTianguis" string="Tianguis" readonly = "1" />
+                                    <field name="smlZonaTianguis" string="Zona Tianguis" readonly = "1" />
+                                    <field name="smlGiroComercial" readonly = "1"/>
+                                    <field name="tynPunto" readonly = "1"/>
+                                    <field name="smlAnno" readonly = "1"/>
+                                    <button class="btn btn-success" type="object" name="asignar_vacante" icon="fa-check-circle" string="Asignar vacante" widget="statinfo"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_view_lista_espera">
+            <field name="name">Lista de Espera</field>
+            <field name="res_model">lista_espera</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+        <menuitem action="action_view_lista_espera" id="menu_lista_espera" parent="menu_procesos" name="Lista de Espera" sequence="89" />
+
+    </data>
+</odoo>

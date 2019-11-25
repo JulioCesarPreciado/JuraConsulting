@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>    
+        <record model="ir.ui.view" id="tianguisgdl_fotos_tree">
+            <field name="name">fotos.tree</field>
+            <field name="model">fotos</field>
+            <field name="arch" type="xml">
+
+            <tree>
+                <field name="nombre" string = "Permisionario"/>
+                <field name="foto" string = "Foto"/>
+            </tree>
+
+            </field>
+        </record>
+        <record model="ir.ui.view" id="tianguisgdl2_fotos_form">
+            <field name="name">fotos.form</field>
+            <field name="model">fotos</field>
+            <field name="arch" type="xml">
+                <form string="Forma de captura">
+                 <sheet>
+                        <notebook colspan="4">
+                            <page name="fotos" string="Fotos">
+                                <group col="4" colspan="4">
+                                     <field name="foto" widget="image" class="oe_avatar oe_left" border="1"
+                                        height="90" colspan="4"/>
+                                    <field name="nombre" placeholder="Permisionario" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_view_fotos">
+        <field name="name">Catálogo - Fotos</field>
+        <field name="res_model">fotos</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Catálogo de Fotos</p>
+        </field>
+    </record>
+    <menuitem action="action_view_fotos" id="menu_fotos" parent="menu_consultas" name="Fotos"
+                  sequence="89"/>
+
+    </data>
+</odoo>

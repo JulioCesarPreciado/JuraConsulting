@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='utf-8'?>
+ <odoo>
+ <data>
+    <template id="reporte_giros_comerciales">
+            <!-- <t t-call="garantias.injetech_external_layout_header"/> -->
+            <!-- t-as="" es el enombre con el que mandamos a llamar las variables del modelo puede ser calquiera, pero el standar es doc -->
+                <t t-call="report.html_container">
+            <!-- A continuacion creamos el header, todo el documento de basa en bootstrap y sus columnas -->
+                   <!-- <div class="header">
+                        <div class="row">       
+                            <div class="col-xs-3">
+                                <img style="width: 200px; height: 100px; margin-top: 40px;" src="/tianguis__guadalajara/GDL.png"/>
+                            </div>
+                            <div class="col-xs-6" style="text-align: center; margin-top: 60px">
+                                <h1 style="font-size: 18px;">DIR. GRAL DE TIANGUIS Y COMERCIO EN E.A. (2018-2021)</h1>
+                                <p style="text-align: center">LISTADO DE GIROS COMERCIALES EN GENERAL</p>
+                            </div>
+                            <div class="col-xs-3">
+                            </div>
+                        </div>
+                    </div> -->
+                <!-- <div class="header" >
+                    <div class="row">
+                        <div class="backgroundimage" style="position:absolute;font-size:12px;z-index:-2;width:100%;height:100%;">
+                                 <h1 style="font-size: 18px;">DIR. GRAL DE TIANGUIS Y COMERCIO EN E.A. (2018-2021)</h1>
+                                <p style="text-align: center">LISTADO DE GIROS COMERCIALES EN GENERAL</p>
+                        </div> 
+                    </div>
+                </div> -->
+                    <div class="page">
+                        <div class="row">       
+                            <div class="col-xs-3">
+                                <!-- <img style="width: 200px; height: 100px; margin-top: 40px;" src="/tianguis__guadalajara/GDL.png"/> -->
+                            </div>
+                            <div class="col-xs-6" style="text-align: center; margin-top: 60px">
+                                <h1 style="font-size: 18px;">DIR. GRAL DE TIANGUIS Y COMERCIO EN E.A. (2018-2021)</h1>
+                                <p style="text-align: center">LISTADO DE GIROS COMERCIALES EN GENERAL</p>
+                            </div>
+                            <div class="col-xs-3">
+                            </div>
+                        </div>
+                            <div>
+                            <!-- <img style="width: 200px; height: 100px; margin-top: 40px;" src="/garantias/static/src/img/cio2.png"/> -->
+                            </div>
+                            <table style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #FFFFFF !important;" rowspan="2">GIRO COMERCIAL</th>
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #FFFFFF !important;" rowspan="2">PUESTOS CON TITULAR</th>
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #FFFFFF !important;" rowspan="2">PUESTOS VACANTES</th>
+                                        <th style="background: white; color: black; vertical-align: middle; border-right-color: #FFFFFF !important;" rowspan="2">TOTAL DE PUESTOS</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <!-- de igual forma colocamos el id del freach que con el que vamos a recorrer y de igual forma t-as es la variable de acceso
+                                en este caso puede ser igual el nombre que sea -->
+                                <t t-foreach="docs" t-as="doc">
+                                        <tr>
+                                            <td style="text-align: center"><span t-field="doc.giro_comercial"/></td>
+                                            <td style="text-align: center"><span t-field="doc.puestos_tirtular"/></td>
+                                            <td style="text-align: center"><span t-field="doc.puestos_vacantes"/></td>
+                                            <td style="text-align: center"><span t-field="doc.total_puestos"/></td>
+                                        </tr>
+                                </t>
+                                </tbody>                 
+                            </table>
+                    </div>
+            </t> 
+        </template>
+
+
+
+<!-- colocamos los datos del reporte  -->
+        <record id="paperformat_giros_comerciales" model="report.paperformat"> 
+            <field name="name">Giros_Comerciales</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">279</field>
+            <field name="page_width">216</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+            id="giros_comerciales_report_report"
+            model="reporte.giros.comerciales"
+            string="GIROS COMERCIALES"
+            report_type="qweb-pdf"
+            paperformat ="paperformat_giros_comerciales"
+            name="tianguis__guadalajara.reporte_giros_comerciales"
+            file="tianguis__guadalajara.reporte_giros_comerciales"   
+        />
+
+        <report
+            id="giros_comerciales_xls"
+            model="reporte.giros.comerciales"
+            string="LISTADO DE GIROS COMERCIALES EN GENERAL"
+            report_type="xlsx"
+            name="tianguis__guadalajara.giros_comerciales_report_xls.xlsx"
+            file="tianguis__guadalajara.giros_comerciales_report_xls.xlsx"
+            attachment_use="False"
+        />
+ </data>
+</odoo>

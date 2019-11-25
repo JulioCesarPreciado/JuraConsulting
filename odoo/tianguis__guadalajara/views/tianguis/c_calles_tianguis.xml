@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_calles_tianguis_tree">
+            <field name="name">c_calles_tianguis.tree</field>
+            <field name="model">c_calles_tianguis</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" />
+                    <field name="smlTianguis" />
+                    <field name="iCallesTianguis" />
+                    <field name="estatus" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_calles_tianguis_form">
+            <field name="name">c_calles_tianguis.form</field>
+            <field name="model">c_calles_tianguis</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Calles de Tianguis">
+                                <group col="4" colspan="4">
+                                    <field name="smlTianguis" placeholder="Nombre de la Calle" required="1" />
+                                    <field name="iCallesTianguis" placeholder="Calle Inicio" domain="[('iCalleInicio', '!=', False),('iCalleFinal', '!=', False)]"/>
+                                </group>
+                                <group col="4" colspan="4">
+                                    <field name="estatus" placeholder="Seleccione el estatus" attrs="{'invisible':[('id', '=', False)]}" />
+                                </group>
+                                <group>
+                                    <field name="id" invisible="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_calles_tianguis">
+            <field name="name">Cátalogo - Calles de Tianguis</field>
+            <field name="res_model">c_calles_tianguis</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem action="action_view_c_calles_tianguis" id="menu_calles_tianguis" parent="menu_catalogo" name="Calles Tianguis" sequence="99" />
+
+    </data>
+
+</odoo>

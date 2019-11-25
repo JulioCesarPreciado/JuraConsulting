@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_c_tianguis_tree">
+            <field name="name">c_tianguis.tree</field>
+            <field name="model">c_tianguis</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" />
+                    <field name="nombre" />
+                    <field name="calle_ubicacion_id" />
+                    <field name="colonia_id" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_tianguis_form">
+            <field name="name">c_tianguis.form</field>
+            <field name="model">c_tianguis</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Tianguis">
+                                <group col="4" colspan="4">
+                                    <field name="nombre" placeholder="Nombre del Tianguis" />
+                                    <field name="calle_ubicacion_id" placeholder="Calle Ubicacion" />
+                                    <field name="colonia_id" placeholder="Colonia" />
+                                    <field name="tynDia" placeholder="Seleccione el día..." />
+                                    <field name="estatus" placeholder="Seleccione el estatus" attrs="{'invisible':[('id', '=', False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="id" invisible="1" />
+                                </group>
+                            </page>
+                            <page string="Reportes Tianguis">
+                                <group col="4" colspan="4">
+                                <field name="fecha_reporte" required="1"/>
+                                <!-- <field name=""/> -->
+                                <button name="generate_report"
+                                    string="Generar Reporte"
+                                    type="action"
+                                    class="oe_highlight"
+                                />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_tianguis_search">
+            <field name="name">Búsqueda Tianguis</field>
+            <field name="model">c_tianguis</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <field name="tynDia" />
+
+
+                    <filter string="Estatus:Activado" name="estatus" domain="[('estatus','=','A')]" />
+                </search>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_tianguis">
+            <field name="name">Tianguis</field>
+            <field name="res_model">c_tianguis</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_estatus': 1}</field>
+        </record>
+
+         
+
+        <menuitem action="action_view_c_tianguis" id="menu_c_tianguis" parent="menu_catalogo" name="Tianguis" sequence="99" />
+
+    </data>
+
+</odoo>

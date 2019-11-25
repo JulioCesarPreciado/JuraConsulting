@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_comercio_festividades_tree">
+            <field name="name">c_comercio_festividades.tree</field>
+            <field name="model">c_comercio_festividades</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" />
+                    <field name="giro" />
+                    <field name="tipo" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_comercio_festividades_form">
+            <field name="name">c_comercio_festividades.form</field>
+            <field name="model">c_comercio_festividades</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Juegos Mecánicos">
+                                <group col="4" colspan="4">
+                                    <field name="giro" />
+                                    <field name="tipo" />
+                                    <field name="estatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)]}" />
+                                </group>
+                                <group>
+                                    <field name="id" invisible="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_comercio_festividades">
+            <field name="name">Cátalogo - Giros Comerciales</field>
+            <field name="res_model">c_comercio_festividades</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_estatus': 1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nuevo Giro Comercial</p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_comercio_festividades_search">
+            <field name="name">Búsqueda Giros Comerciales</field>
+            <field name="model">c_comercio_festividades</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="id" />
+                    <field name="giro" />
+                    <field name="tipo" />
+                    <filter string="Estatus:Activado" name="estatus" domain="[('estatus','=','A')]" readonly="1" />
+                </search>
+            </field>
+        </record>
+
+        <menuitem action="action_view_c_comercio_festividades" id="menu_c_comercio_festividades" parent="menu_catalogo_f" name="Giros Comerciales" sequence="99" />
+
+    </data>
+
+</odoo>

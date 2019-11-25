@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_puestos_espacios_tree">
+            <field name="name">puestos_espacios.tree</field>
+            <field name="model">puestos_espacios</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" string="Folio" />
+                    <field name="iPERMISIO" />
+                    <field name="medidas_frente" />
+                    <field name="medidas_fondo" />
+                    <field name="tipo" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_puestos_espacios_form">
+            <field name="name">puestos_espacios.form</field>
+            <field name="model">puestos_espacios</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Información general del puesto">
+                                <group col="4" colspan="4">
+                                    <field name="id" readonly="1" string="Folio" />
+                                    <field name="iPERMISIO" placeholder="Seleccione el Permisionario" domain="[('c_dependencia_id', '=', 4)]" />
+                                </group>
+                                <group col="4" colspan="4">
+                                    <field name="medidas_frente" placeholder="Medidas de Frente" />
+                                    <field name="medidas_fondo" placeholder="Medidas de Fondo" />
+                                </group>
+                            </page>
+                        </notebook>
+                        <notebook>
+                            <page name="personal_information" string="Información detallada del puesto">
+                                <group col="4" colspan="4">
+                                    <field name="hora_inicio" placeholder="Hora de Inicio" widget="float_time" />
+                                    <field name="hora_fin" placeholder="Hora de Final" widget="float_time" />
+                                    <field name="mixto" colspan="4" />
+                                    <field name="hora_inicio2" placeholder="Hora de Inicio 2" widget="float_time" attrs="{'invisible':[('mixto', '=', False)]}" />
+                                    <field name="hora_fin2" placeholder="Hora de Final 2" widget="float_time" attrs="{'invisible':[('mixto', '=', False)]}" />
+                                </group>
+                                <group col="4" colspan="4" string="Tipo y Clase">
+                                    <field name="tipo" placeholder="Seleccione un tipo" />
+                                    <field name="clase" placeholder="Seleccione una clase" />
+                                </group>
+                                <group col="4" colspan="4" string="Días de Venta">
+                                    <field name="lunes" />
+                                    <field name="martes" />
+                                    <field name="miercoles" />
+                                    <field name="jueves" />
+                                    <field name="viernes" />
+                                    <field name="sabado" />
+                                    <field name="domingo" />
+                                </group>
+                                <group col="4" colspan="4" string="Familia y Giro">
+                                    <field name="familia" />
+                                    <field name="giro" widget="many2many_tags" domain="[('smlFamilia', '=', familia)]" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_puestos_espacios_search">
+            <field name="name">Búsqueda puestos_espacios</field>
+            <field name="model">puestos_espacios</field>
+            <field name="arch" type="xml">
+                <search>
+                    <filter string="Permisionarios:Tianguis" name="permisionarios" domain="[('iPERMISIO.c_dependencia_id','=',4)]" />
+                </search>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_puestos_espacios">
+            <field name="name">puestos_espacios</field>
+            <field name="res_model">puestos_espacios</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_permisionarios': 1}</field>
+        </record>
+
+        <menuitem action="action_view_puestos_espacios" id="menu_puestos_espacios" parent="menu_procesos_e" name="Puestos" sequence="27" />
+    </data>
+</odoo>

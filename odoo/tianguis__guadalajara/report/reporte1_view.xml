@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="ficha_movimiento">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="o_row">>
+                                <div class="form-group m-form__group row">
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <!--<span><strong>Imagen:</strong></span> -->
+                                            <img t-if="o.imagen"
+                                                 t-att-src="'data:image/png;base64,%s' % to_text(o.imagen)"
+                                                 style="max-height: 120px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table table-condensed mt48" t-if="o.movimiento.puesto">
+                                    <thead>
+                                        <tr>
+                                            <th>FOLIO</th>
+                                            <th>SITUACION</th>
+                                            <th>NOMBRE</th>
+                                            <th>Giro</th>
+                                            <th>Linea</th>
+                                            <th>Inicia</th>
+                                            <th>Termina</th>
+                                            <th>Firma</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr t-foreach="o.movimiento.puesto" t-as="movimiento">
+                                            <td>
+                                                <span t-field="movimiento.iFolio"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="movimiento.tynSituacion"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="movimiento.iPermisionario"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="movimiento.smlGiroComercial"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="movimiento.smlCuadra"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="movimiento.smmInicia"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="movimiento.smmTermina"/>
+                                            </td>
+                                            <td>
+                                                <span>_________________</span>
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <report
+                string="Ficha Movimiento"
+                id="action_reporte_ficha_movimiento"
+                model="movimiento.puesto"
+                report_type="qweb-pdf"
+                name="tianguisgdl.ficha_movimiento"
+                file="tianguisgdl.ficha_movimiento"
+                print_report_name="'Ficha de Movimiento'"
+        />
+
+    </data>
+
+</odoo>

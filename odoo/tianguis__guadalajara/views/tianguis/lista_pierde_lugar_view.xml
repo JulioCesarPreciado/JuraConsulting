@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_lista_pierde_lugar_tree">
+            <field name="name">lista_pierde_lugar.tree</field>
+            <field name="model">lista_pierde_lugar</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="iFolio"/>
+                    <field name="iPermisionario"/>
+                    <field name="smlTianguis"/>
+                    <field name="dttFechaPierdeL"/>
+                    <field name="tynFalCon"/>
+                    <field name="tynFaltot"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_lista_pierde_lugar_form">
+            <field name="name">lista_pierde_lugar.form</field>
+            <field name="model">lista_pierde_lugar</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <header>
+                        <button name="imprime_ficha" string="Imprimir" type="object"/>
+                    </header>
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information"
+                                  string="Información de Lista Pierde Lugar">
+                                <group>
+                                    <group>
+                                        <field name="id" placeholder="Folio" readonly="1"/>
+                                        <field name="iPermisionario" placeholder="Permisionario"/>
+                                        <field name="smlTianguis" placeholder="Tianguis"/>
+                                        <field name="smlAnno" placeholder="Año"/>
+                                    </group>
+                                    <group>
+                                        <field name="vchSemanas" placeholder="Semanas"/>
+                                        <field name="tynFalCon" placeholder="Faltas Con"/>
+                                        <field name="tynFaltot" placeholder="Faltas Totales"/>
+                                        <field name="dttFechaPierdeL" placeholder="Fecha"/>
+                                        <field name="smlGiro" placeholder="Giro"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_pierdelugar">
+            <field name="name">Pierde Lugar</field>
+            <field name="res_model">lista_pierde_lugar</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem action="action_view_pierdelugar" id="menu_pierdelugar" parent="menu_procesos" name="Lista Pierde Lugar"
+                  sequence="29"/>
+
+
+    </data>
+
+</odoo>

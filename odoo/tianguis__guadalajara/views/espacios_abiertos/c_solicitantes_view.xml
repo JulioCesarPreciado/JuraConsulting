@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <data>
+        <template id="assets_backend" name="static_resources_demo assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="tianguis__guadalajara/static/js/main.js"></script>
+            </xpath>
+        </template>
+
+        <record model="ir.ui.view" id="espacios_abiertos_c_solicitantes_tree">
+            <field name="name">c_solicitantes.tree</field>
+            <field name="model">c_solicitantes</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" />
+                    <field name="nombre" />
+                    <field name="curp" />
+                    <field name="estatus" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="espacios_abiertos_c_solicitantes_form">
+            <field name="name">c_solicitantes.form</field>
+            <field name="model">c_solicitantes</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Información del solicitante">
+
+                                <group col="4" colspan="4">
+                                    <field name="id" placeholder="Solicitud" string="No. Permisionario" />
+                                    <field name="create_date" string="Fecha de recepción" attrs="{'invisible':[('id', '=', False)]}" />
+                                </group>
+                                <group col="4" colspan="4">
+                                    <field name="nombre" required="1" />
+                                    <field name="paterno" required="1" />
+                                    <field name="materno" required="1" />
+                                </group>
+                                <group col="4" colspan="4">
+                                    <field name="curp" placeholder="CURP" required="1" colspan="2" />
+                                    <field name="fca_nacimiento" placeholder="Seleccione la fecha de nacimiento" required="1" colspan="2" />
+                                    <field name="telefono" placeholder="Telefono" />
+                                    <field name="cp" placeholder="Código Postal" />
+                                    <field name="sexo" placeholder="Seleccione el sexo..." />
+                                </group>
+                                <group></group>
+                                <group col="4" colspan="4" attrs="{'invisible': [('id', '=', False)]}">
+                                    <button class="btn btn-success" type="object" name="asignar_permisionario" icon="fa-check-circle" string="Asignar Permisionario" widget="statinfo" attrs="{'invisible': [('ocultar','=',True)]}"/>
+                                    <field name="estatus" placeholder="Seleccione el estatus..." />
+                                </group>
+                            </page>
+                            <page name="puesto_information" string="Información del puesto">
+                                <group col="4" colspan="4" string="Dimensiones">
+                                    <field name="medida_frente" />
+                                    <field name="medida_fondo" />
+                                </group>
+                                <group col="4" colspan="4" string="Horario">
+                                    <field name="hora_inicio" widget="float_time" />
+                                    <field name="hora_fin" widget="float_time" />
+                                    <field name="mixto" colspan="4"/>
+                                    <field name="hora_inicio2" widget="float_time" attrs="{'invisible':[('mixto', '=', False)]}" />
+                                    <field name="hora_fin2" widget="float_time" attrs="{'invisible':[('mixto', '=', False)]}" />
+                                </group>
+                                <group col="4" colspan="4" string="Tipo y Clase">
+                                    <field name="tipo" placeholder="Seleccione un tipo" />
+                                    <field name="clase" placeholder="Seleccione una clase" />
+                                </group>
+                                <group col="4" colspan="4" string="Días de Venta">
+                                    <field name="lunes" />
+                                    <field name="martes" />
+                                    <field name="miercoles" />
+                                    <field name="jueves" />
+                                    <field name="viernes" />
+                                    <field name="sabado" />
+                                    <field name="domingo" />
+                                    <field name="ocultar" invisible="1" />
+                                </group>
+                                <group col="4" colspan="4" string="Familia y Giro">
+                                    <field name="familia" />
+                                    <field name="giro" widget="many2many_tags" domain="[('smlFamilia', '=', familia)]" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="espacios_abiertos_c_solicitantes_search">
+            <field name="name">Búsqueda Solicitantes</field>
+            <field name="model">c_solicitantes</field>
+            <field name="arch" type="xml">
+                <search>
+
+                    <field name="nombre" />
+                    <field name="sexo" />
+                    <field name="fca_nacimiento" />
+                    <field name="curp" />
+                    <filter string="Estatus:No aceptado" name="estatus" domain="[('estatus','=','N')]" />
+                </search>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_solicitantes">
+            <field name="name">Cátalogo - Solicitantes</field>
+            <field name="res_model">c_solicitantes</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_estatus': 1}</field>
+            <field name="domain">[]</field>
+        </record>
+
+        <menuitem action="action_view_c_solicitantes" id="menu_c_solicitantes" parent="menu_catalogo_e" name="Solicitantes" sequence="1" />
+
+    </data>
+
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report id="report_pruebas"
+            string = "Pruebas"
+            model = "puestos"
+            report_type = "qweb-pdf"
+            name = "tianguis__guadalajara.report_pruebas_template"
+        />
+
+        <template id="report_pruebas_template">
+            <t t-call="report.html_container">
+               <!-- <t t-call="report.external_layout"> -->
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <p>
+                        <t t-set="giros" t-value="o.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot; where puestos.&quot;smlGIRO1&quot; = 1')"/>
+                   <!--      <t t-set="giros" t-value="o.run_sql('select * from puestos')"/>-->
+                        <p>Puestos con Giro de Comida: <span t-esc="giros"/></p>
+
+
+
+                        </p>
+
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
+       

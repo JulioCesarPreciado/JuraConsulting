@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_c_usuarios_tree">
+            <field name="name">c_usuarios.tree</field>
+            <field name="model">c_usuarios</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id"/>
+                    <field name="chUsuario" />
+                    <field name="tynArea" />
+                    <field name="tynNivel" />
+                    <field name="estatus" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_usuarios_form">
+            <field name="name">c_usuarios.form</field>
+            <field name="model">c_usuarios</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Usuarios">
+                                <h3>Usuario</h3>
+                                <div style="border-style: double; padding: 3px;">
+                                    <group col="4" colspan="4">
+                                        <field name="chUsuario" placeholder="Nombre del Usuario"/>
+                                        <field name="vchClave" placeholder="Contraseña del Usuario"/>
+                                    </group>
+                                </div>
+                                <h3>Datos del usuario</h3>
+                                <div style="border-style: double;  padding: 3px;">
+                                    <group col="4" colspan="4">
+                                        <field name="vchNombre" placeholder="Nombre del Usuario"/>
+                                        <field name="estatus" placeholder="Seleccione el estatus" attrs="{'invisible':[('id', '=', False)]}"/>
+                                    </group>
+                                    <group col="4" colspan="4">
+                                        <field name="vchPaterno" placeholder="Apellido Paterno" />
+                                        <field name="vchMaterno" placeholder="Apellido Materno" />
+                                    </group>
+                                </div>
+                                <h3>Nivel y Area del Usuario</h3>
+                                <div style="border-style: double;  padding: 3px;">
+                                    <group col="4" colspan="4">
+                                        <field name="tynArea" placeholder="Área"/>
+                                        <field name="tynNivel" placeholder="Nivel"/>
+                                    </group>
+                                </div>
+                                <group>
+                                    <field name="id" invisible="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_usuarios">
+            <field name="name">Cátalogo - Usuarios</field>
+            <field name="res_model">c_usuarios</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Dar de alta un nuevo usuario</p>
+            </field>
+        </record>
+
+        <menuitem action="action_view_c_usuarios" id="menu_c_usuarios" parent="menu_catalogo" name="Usuarios" sequence="27"/>
+
+    </data>
+
+</odoo>

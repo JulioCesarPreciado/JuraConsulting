@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_pagos_tree">
+            <field name="name">pagos.tree</field>
+            <field name="model">pagos</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false">
+                    <field name="id" string="Folio" />
+                    <field name="permisionario" placeholder="Permisionario" readonly="1"/>
+                    <field name="puesto" placeholder="Puesto" readonly="1"/>
+                    <field name="concepto" placeholder="Concepto" readonly="1"/>
+                    <field name="cargo" placeholder="Cargo" readonly="1"/>
+                    <field name="abono" placeholder="Abono" readonly="1"/>
+                    <field name="saldo" placeholder="Saldo" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_pagos_form">
+            <field name="name">pagos.form</field>
+            <field name="model">pagos</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="pagos" string="Pagos">
+                                <group col="4" colspan="4">
+                                    <field name="permisionario" placeholder="Permisionario" readonly="1"/>
+                                    <field name="puesto" placeholder="Puesto" readonly="1"/>
+                                    <field name="concepto" placeholder="Concepto" readonly="1"/>
+                                    
+                                </group>
+                                <group col="4" >
+                                    <field name="cargo" placeholder="Seleccione el cargo" readonly="1"/>
+                                    <field name="abono" placeholder="Abono" readonly="1"/>
+                                    <field name="saldo_ant" placeholder="Saldo Anterior" readonly="1"/>
+                                    <field name="saldo_act" placeholder="Saldo Actual" readonly="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_pagos_search">
+                <field name="name">Búsqueda Pagos</field>
+                <field name="model">pagos</field>
+                <field name="arch" type="xml">
+                    <search>
+                        <field name="id" string="Folio"/>
+                        <field name="permisionario" />
+                        <field name="puesto" />
+                        <field name="concepto" />
+                    </search>
+                </field>
+            </record>
+
+        <record model="ir.actions.act_window" id="action_view_pagos">
+            <field name="name">Pagos</field>
+            <field name="res_model">pagos</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Registra un nuevo Pago</p>
+            </field>
+        </record>
+            
+        <menuitem action="action_view_pagos" id="menu_pagos" parent="menu_consultas" name="Pagos"
+                  sequence="15"/>
+    </data>
+</odoo>

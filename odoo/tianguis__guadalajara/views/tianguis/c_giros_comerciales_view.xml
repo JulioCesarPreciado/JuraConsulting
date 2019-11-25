@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_c_giros_comerciales_tree">
+            <field name="name">c_giros_comerciales.tree</field>
+            <field name="model">c_giros_comerciales</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" />
+                    <field name="vchGiroComercial" />
+                    <field name="tynEstatus" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_giros_comerciales_form">
+            <field name="name">c_giros_cocmerciales.form</field>
+            <field name="model">c_giros_comerciales</field>
+            <field name="arch" type="xml">
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="GirosComerciales">
+                                <group col="4" colspan="4">
+                                    <field name="vchGiroComercial" placeholder="Nombre del Giro Comercial" />
+                                    <field name="smlFamilia" placeholder="Seleccione la Familia" />
+                                    <field name="tynEstatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)]}" />
+                                </group>
+                                <group>
+                                    <field name="id" invisible="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_giros_comerciales">
+            <field name="name">Cátalogo - Giros Comerciales</field>
+            <field name="res_model">c_giros_comerciales</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea un nuevo Giro Comercial</p>
+            </field>
+        </record>
+
+        <menuitem action="action_view_c_giros_comerciales" id="menu_c_giros_comerciales" parent="menu_catalogo" name="Giros Comerciales" sequence="99" />
+
+    </data>
+</odoo>

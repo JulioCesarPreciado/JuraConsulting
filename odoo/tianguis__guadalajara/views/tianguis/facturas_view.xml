@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_c_factura_tree">
+            <field name="name">c_facturas.tree</field>
+            <field name="model">c_factura</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="iFolio"/>
+                    <field name="iPermisionario"/>
+                    <field name="smlTianguis"/>
+                    <field name="tynCategoria"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_factura_form">
+            <field name="name">c_c_factura.form</field>
+            <field name="model">c_factura</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <header>
+                        <button name="imprime_ficha" string="Imprimir" type="object"/>
+                    </header>
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information"
+                                  string="Información de Factura">
+                                <group>
+                                    <group>
+                                        <field name="iFolio" placeholder="Folio"/>
+                                        <field name="iPermisionario" placeholder="Permisionario"/>
+                                        <field name="smlTianguis" placeholder="Tianguis"/>
+                                        <field name="tynCategoria" placeholder="Categoria"/>
+                                    </group>
+                                    <group>
+                                        <field name="tynDia" placeholder="Día"/>
+                                        <field name="iSemana" placeholder="Semana"/>
+                                        <field name="iAnio" placeholder="Año"/>
+                                        <field name="smmInicia" placeholder="Inicia"/>
+                                    </group>
+                                    <group>
+                                        <field name="smmTermina" placeholder="Termina"/>
+                                        <field name="smmLongitud" placeholder="Longitud"/>
+                                        <field name="smlGiroComercial" placeholder="Giro Comercial"/>
+                                        <field name="dtFecha" placeholder="Fecha"/>
+                                    </group>
+                                    <group>
+                                        <field name="smmTotal" placeholder="Total"/>
+                                        <field name="vchConsecutivo" placeholder="Consecutivo"/>
+                                        <field name="iZonaT" placeholder="Zona"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_Factura">
+            <field name="name">Factura</field>
+            <field name="res_model">c_factura</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nueva Factura</p>
+            </field>
+        </record>
+
+        <menuitem action="action_view_Factura" id="menu_factura" parent="menu_procesos" name="Facturas"
+                  sequence="17"/>
+
+
+    </data>
+
+
+</odoo>

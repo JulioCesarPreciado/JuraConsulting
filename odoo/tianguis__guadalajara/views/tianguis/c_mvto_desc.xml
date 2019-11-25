@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_motivodescuento_tree">
+            <field name="name">c_motivodescuento.tree</field>
+            <field name="model">c_motivodescuento</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="id" placeholder="ID" />
+                    <field name="vchMotivoDescuento"/>
+                    <field name="tynDescuento" />
+                    <field name="estatus" />
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_motivodescuento_form">
+            <field name="name">c_motivodescuento.form</field>
+            <field name="model">c_motivodescuento</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Movito Descuento">
+                                <div style="margin-top:10px;">
+                                    <div style="width:50%; margin-left: 1px;">
+                                        <h4>Motivo del descuento</h4>
+                                        <field name="vchMotivoDescuento" placeholder="Motivo del Descuento" />
+                                    </div>
+                                </div>
+                                <group col="4" colspan="4">
+                                    <field name="tynDescuento" placeholder="Descuento" />
+                                    <field name="estatus" placeholder="Seleccione el estatus" attrs="{'invisible':[('id', '=', False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="id" invisible="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_motivodescuento">
+            <field name="name">Cátalogo - Motivo Descuento</field>
+            <field name="res_model">c_motivodescuento</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nuevo Motivo de Descuento</p>
+            </field>
+        </record>
+
+        <menuitem action="action_view_c_motivodescuento" id="menu_c_motivodescuento" parent="menu_catalogo" name="Motivo de Descuento" sequence="99"/>
+
+    </data>
+
+</odoo>

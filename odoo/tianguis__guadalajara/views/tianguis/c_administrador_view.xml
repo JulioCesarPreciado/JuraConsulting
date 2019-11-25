@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.ui.view" id="tianguisgdl_c_administrador_tree">
+        <field name="name">c_administrador.tree</field>
+        <field name="model">c_administrador</field>
+        <field name="arch" type="xml">
+
+            <tree>
+                <field name="id" placeholder="ID" />
+                <field name="nombre" />
+                <field name="paterno" />
+                <field name="materno" />
+                <field name="curp" />
+            </tree>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="tianguisgdl_c_administrador_form">
+        <field name="name">c_administrador.form</field>
+        <field name="model">c_administrador</field>
+        <field name="arch" type="xml">
+
+            <form string="Agregar Usuario">
+                <sheet>
+                    <notebook col="14">
+                        <page name="personal_information" string="Administrador de Tianguis">
+                            <h3>Datos Personales</h3>
+                            <group col="4">
+                                <field name="nombre" placeholder="Nombre" colspan="4" />
+                                <field name="paterno" placeholder="Apellido Paterno" />
+                                <field name="materno" placeholder="Apellido Materno" />
+                                <field name="contrasena" placeholder="Contraseña" />
+                                <field name="dtNacimiento" placeholder="Seleccione fecha de nacimiento" />
+                                <field name="sexo" placeholder="Seleccione un género" />
+                                <field name="curp" placeholder="CURP" />
+                                <field name="telefono" placeholder="Celular" />
+                            </group>
+                            <h3>Domicilio</h3>
+                            <group col="4" colspan="4">
+                                <field name="calle" placeholder="Calle" colspan="4" />
+                                <field name="no_ext" placeholder="No.Exterior" colspan="1" />
+                                <field name="no_int" placeholder="No.Interior" colspan="1" />
+                                <field name="colonia_id" placeholder="Colonia" />
+                                <field name="poblacion" placeholder="Seleccione una población" />
+                                <field name="cp" placeholder="CP" />
+                                <field name="estatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)]}" />
+
+                            </group>
+                            <group>
+                                <field name="id" invisible="1" />
+                            </group>
+                        </page>
+                        <page name="laboral_information" string="Tianguis a Administrar">
+                            <h3>Días Laborables</h3>
+                            <group col="6" colspan="6">
+                                <field name="lunes" colspan="1" />
+                                <field name="jueves" />
+                                <field name="sabado" />
+                                <field name="martes" />
+                                <field name="viernes" />
+                                <field name="domingo" />
+                                <field name="miercoles" />
+                            </group>
+                            <group col="4">
+                                <field name="tianguis_id" widget="many2many_tags" domain="[('tynDia','=',1)]" attrs="{'invisible':[('lunes','=',False)]} " placeholder="Seleccione Tianguis del lunes" string="Tianguis Lunes" />
+                                <field name="tianguis_id" widget="many2many_tags" domain="[('tynDia','=',2)]" attrs="{'invisible': [('martes','=',False)]}" placeholder="Seleccione tianguis del martes" string="Tianguis Martes" />
+                                <field name="tianguis_id" widget="many2many_tags" domain="[('tynDia','=',3)]" attrs="{'invisible': [('miercoles','=',False)]}" placeholder="Selecione tianguis del miércoles" string="Tianguis Miercoles" />
+                                <field name="tianguis_id" widget="many2many_tags" domain="[('tynDia','=',4)]" attrs="{'invisible': [('jueves','=',False)]}" placeholder="Seleccione tianguis del jueves" string="Tianguis Juevez" />
+                                <field name="tianguis_id" widget="many2many_tags" domain="[('tynDia','=',5)]" attrs="{'invisible': [('viernes','=',False)]}" placeholder="Selecciones tianguis del viernes" string="Tianguis Viernes" />
+                                <field name="tianguis_id" widget="many2many_tags" domain="[('tynDia','=',6)]" attrs="{'invisible': [('sabado','=',False)]}" placeholder="Selecciones tianguis del sábado" string="Tianguis Sabado" />
+                                <field name="tianguis_id" widget="many2many_tags" domain="[('tynDia','=',7)]" attrs="{'invisible': [('domingo','=',False)]}" placeholder="Selecciones tianguis del domingo" string="Tianguis Domingo" />
+                            </group>
+                        </page>
+
+
+                    </notebook>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="tianguisgdl_c_administrador_search">
+        <field name="name">Búsqueda Permisionario</field>
+        <field name="model">c_administrador</field>
+        <field name="arch" type="xml">
+            <search>
+
+                <field name="nombre" />
+                <field name="paterno" />
+                <field name="materno" />
+                <field name="curp" />
+                <filter string="Estatus:Activado" name="estatus" domain="[('estatus','=','A')]" />
+            </search>
+
+        </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="action_view_c_administrador">
+        <field name="name">Catálogo - Administradores de Tianguis</field>
+        <field name="res_model">c_administrador</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_estatus': 1}</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Nuevo Administrador</p>
+        </field>
+    </record>
+
+
+    <menuitem action="action_view_c_administrador" id="menu_administrador" parent="menu_catalogo" name="Administradores de Tianguis" sequence="99" />
+</odoo>

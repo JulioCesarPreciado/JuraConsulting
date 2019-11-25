@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+
+    <data>
+        <record model="ir.ui.view" id="tianguisgdl_tb_imptarjeton_tree">
+            <field name="name">tb_imptarjeton.tree</field>
+            <field name="model">tb_imptarjeton</field>
+            <field name="arch" type="xml">
+
+                <tree>
+                    <field name="iPermisionario"/>
+                    <field name="smltianguis"/>
+                    <field name="iFolio"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_tb_imptarjeton_form">
+            <field name="name">tb_imptarjeton.form</field>
+            <field name="model">tb_imptarjeton</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information"
+                                  string="Permisio">
+                                <group col="4" colspan="4">
+                                    <field name="iPermisionario"/>
+                                    <field name="smltianguis"/>
+                                    <field name="iFolio"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_tb_imptarjeton">
+            <field name="name">Tarjeton</field>
+            <field name="res_model">tb_imptarjeton</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nuevo Tarjeton</p>
+            </field>
+        </record>
+
+        <menuitem action="action_view_tb_imptarjeton" id="menu_tarjeton" parent="menu_consultas" name="Tarjeton"
+                  sequence="26"/>
+    </data>
+
+
+</odoo>
+
+

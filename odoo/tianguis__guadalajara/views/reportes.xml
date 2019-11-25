@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id = "report_render_view" model = "ir.ui.view">
+		<field name = "name">report.render.view</field>
+		<field name = "model">report.render</field>
+		<field name = "arch" type = "xml">
+            <form >
+                <group cols="4" style ="width: 50%">
+                <!-- <field name = "nuevo_vendedor_id" options = "{'no_create': '1', 'no_create_edit': '1', 'no_open': '1'}"/> -->
+                <field name = "module" class="my-focus-field"/>
+                <field name = "report_tianguis"
+						class="my-focus-field"
+						attrs="{'required':[('module','=','tianguis')],
+						'invisible':[('module','=','espacios')]}"/>
+                <field name = "report_espacios"
+						class="my-focus-field"
+						attrs="{'required':[('module','=','espacios')],
+						'invisible':[('module','=','tianguis')]}"/>
+                </group>
+                <group col="4" colspan="4">
+                  <field name = "report_date_from"/>
+                  <field name = "report_date_to"/>
+                </group>  
+            <div>
+            <footer>
+                <button name="get_report_render" type="object" string="IMPRIMIR PDF" class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toglle="dropdown" aria-expanded="true"/>
+                <button name="reportToXlsx" type="object" string="EXPORTAR A EXCEL" class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toglle="dropdown" aria-expanded="true"/>
+                <button special="cancel" string="Cancelar" type="object" icon="fa-ban"/>
+            </footer>
+            </div>
+            </form>	
+        </field>		
+	</record>
+
+    <record model="ir.actions.act_window" id="report_remder_action">
+			<field name="name">Reportes</field>
+			<field name="res_model">report.render</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="report_render_view"/>
+		</record>
+		
+		<menuitem id="catalogo_general_id" name="Reportes" parent="tianguis__guadalajara.menu_reportes_principal" action="report_remder_action"/>
+
+  </data>
+</odoo>

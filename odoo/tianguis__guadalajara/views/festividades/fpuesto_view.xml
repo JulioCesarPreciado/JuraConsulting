@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_f_puestos_tree">
+            <field name="name">f_puestos.tree</field>
+            <field name="model">f_puestos</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id" string = "Folio" />
+                    <field name="imagen" string = "Puesto" widget="image" class="oe_avatar oe_left" border="1" height="90"/>
+                    <field name="festividad"/>
+                    
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_f_puestos_form">
+            <field name="name">f_puestos.form</field>
+            <field name="model">f_puestos</field>
+            <field name="arch" type="xml">
+
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="personal_information" string="Festividades">
+                                <group col="4" colspan="4">
+                                    <field name="imagen" widget="image" class="oe_avatar oe_left" border="1" height="90" colspan="4"/>                               
+                                    <field name="permisionario" placeholder="Seleccione un permisionario..." colspan = "4"/>
+                                    <field name="festividad" placeholder="Seleccione una festividad..." colspan = "4"/>                                      
+                                    <field name="fecha_inicio"/>
+                                    <field name="fecha_fin"/>
+                                    <field name="lugar"/>
+                                </group>    
+                                <group col="4" colspan="4">
+                                    <field name="juego" />
+                                    <field name="comercio" />                           
+                                    <field name="juegos_mecanicos" attrs="{'invisible':[('juego','=',False)]} " placeholder="Seleccione el juego mecánico..."/>
+                                    <field name="giros" attrs="{'invisible':[('comercio','=',False)]}" placeholder="Seleccione el giro del comercio..."/>
+                                    <field name="tiene_dictamen" />
+                                    <field name="nombre_dictamen" placeholder="Nombre del dictamen" attrs="{'invisible':[('tiene_dictamen', '=', False)]}" />
+                                    <field name="dictamen" widget="binary" filename="nombre_dictamen" attrs="{'invisible':[('tiene_dictamen', '=', False)],'required':[('tiene_dictamen', '!=', False)]}"/>
+                                </group>
+                                <group col="4" colspan="4">
+                                    <field name="largo" placeholder = "Nombre del Administrador"/>
+                                    <field name="ancho"/>
+                                </group>
+                                <group col="4" colspan="4">
+                                    <field name="comentarios" colspan = "4"/>
+                                </group>
+                                <group col="4" colspan="4">
+                                    <field name="estatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)]}" colspan = "2"/>
+                                    <field name="id" invisible="1" />
+                                </group>
+                                
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_f_puestos">
+            <field name="name">Puestos - Festividades</field>
+            <field name="res_model">f_puestos</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_estatus': 1}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea una nuevo Puesto</p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_f_puestos_search">
+            <field name="name">Búsqueda Puestos</field>
+            <field name="model">f_puestos</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="id" />
+                    <field name="festividad" />
+                    <field name="permisionario" />
+                   
+
+                    <filter string="Estatus:Activado" name="estatus" domain="[('estatus','=','A')]" readonly="1" />
+                </search>
+
+            </field>
+        </record>
+        <menuitem action="action_view_f_puestos" id="menu_f_puestos" parent="menu_procesos_f" name="Puestos" sequence="99" />
+
+
+    </data>
+</odoo>

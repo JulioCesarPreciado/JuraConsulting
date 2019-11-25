@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_permisionario_tree">
+            <field name="name">c_permisionario.tree</field>
+            <field name="model">c_permisionario</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="id" />
+                    <field name="nombres" />
+                    <field name="apellidoP" />
+                    <field name="apellidoM" />
+                    <field name="curp" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_permisionario_form">
+            <field name="name">c_permisionario.form</field>
+            <field name="model">c_permisionario</field>
+            <field name="arch" type="xml">
+                <form string="Forma de captura">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="information" string="Permisionario en Fesitiviadades">
+                                <group col="4" colspan="4">
+                                    <field name="imagen" widget="image" class="oe_avatar oe_left" border="1" height="90" colspan="4" />
+                                    <field name="nombres" colspan="4"/>
+                                    <field name="apellidoP" placeholder = "Apellido Paterno"/>
+                                    <field name="apellidoM" placeholder = "Apellido Materno"/>
+                                    <field name="fecha_nacimiento" />
+                                    <field name="sexo" />
+                                </group>
+                                <group col="4" colspan="4">
+                                    <field name="telefono" />
+                                    <field name="curp" placeholder = "CURP"/>
+                                    <field name="rfc" />
+                                    <field name="escolaridad" />
+                                    <field name="EstCiv" />
+                                </group>
+                                <group col="4" colspan="4">    
+                                    <field name="domicilio" placeholder = "Domicilio" colspan = "4"/>
+                                    <field name="no_ext" />
+                                    <field name="no_int" />
+                                    <field name="poblacion" placeholder = "Población" />
+                                    <field name="colonia" />
+                                    <field name="c_p" />
+                                    <field name="estatus" placeholder="Seleccione el Estatus" attrs="{'invisible':[('id', '=', False)]}" />
+                                </group>
+                                <group>
+                                    <field name="id" invisible="1" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_c_permisionario">
+            <field name="name">Cátalogo - Permisionarios en Festividades</field>
+            <field name="res_model">c_permisionario</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{'search_default_estatus': 1}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Crea un nuevo Permisionario</p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="tianguisgdl_c_permisionario_search">
+            <field name="name">Búsqueda Permisionarios en Fesitiviadades</field>
+            <field name="model">c_permisionario</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="id" />
+                    <field name="nombres" />
+                    <field name="apellidoP" />
+                    <field name="apellidoM" />
+                    <field name="curp" />
+
+                    <filter string="Estatus:Activado" name="estatus" domain="[('estatus','=','A')]" readonly="1" />
+                </search>
+
+            </field>
+        </record>
+
+        <menuitem action="action_view_c_permisionario" id="menu_c_permisionario" parent="menu_catalogo_f" name="Permisionarios" sequence="99" />
+
+    </data>
+</odoo>

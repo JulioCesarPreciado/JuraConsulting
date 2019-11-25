@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+    <report id="report_pagos_tianguis" string="Pagos en Tianguis" model="c_tianguis" report_type="qweb-pdf" name="tianguis__guadalajara.report_pagos_tianguis_template" />
+    <template id="report_pagos_tianguis_template">
+      <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="doc">
+          <div class="page">
+            <h2 class="text-center">Reporte Saldos obtenidos en tianguis</h2>
+            <p>
+              Fecha:
+              <span t-field="doc.fecha_reporte" />
+            </p>
+            <p>
+              Tianguis:
+              <span t-field="doc.nombre" />
+            </p>
+            <table class="table table-bordered" style="width:100%;">
+              <thead>
+                <tr>
+                  <th style="vertical-align: middle;">Permisionario</th>
+                  <th style="vertical-align: middle;">Puesto</th>
+                  <th style="vertical-align: middle;">Valor</th>
+                  <th style="vertical-align: middle;">Cargo</th>
+                  <th style="vertical-align: middle;">Abono</th>
+                  <th style="vertical-align: middle;">Descuento</th>
+                  <th style="vertical-align: middle;">Estatus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <t t-set="pagos" t-value="doc.run_sql(doc.fecha_reporte,doc.nombre)" />
+                <t t-foreach="pagos" t-as="line">
+                  <tr>
+                    <td>
+                      <span t-esc="line[0]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[1]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[2]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[3]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[4]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[5]" />
+                    </td>
+                    <td>
+                      <span t-esc="line[6]" />
+                    </td>
+                  </tr>
+                </t>
+              </tbody>
+            </table>
+            <div>
+              <t t-set="totales" t-value="doc.sum_valor(doc.fecha_reporte,doc.nombre)" />
+              <p>
+                Precio Total de Puestos:
+                <span t-esc="totales[0]" />
+              </p>
+              <p>
+                Cargos Totales en Puestos:
+                <span t-esc="totales[1]" />
+              </p>
+              <p>
+                Abonos Totales de Puestos:
+                <span t-esc="totales[2]" />
+              </p>
+              <p>
+                Permisionarios con Descuentos:
+                <span t-esc="totales[3]" />
+              </p>
+              <p>
+                Permisionarios sin Descuentos:
+                <span t-esc="totales[4]" />
+              </p>
+              <p>
+                Permisionarios Fijos:
+                <span t-esc="totales[5]" />
+              </p>
+              <p>
+                Permisionarios Roleros:
+                <span t-esc="totales[6]" />
+              </p>
+            </div>
+          </div>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>

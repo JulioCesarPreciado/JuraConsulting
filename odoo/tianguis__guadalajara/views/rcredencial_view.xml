@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <report id="report_credencial" string="Credencial de Rol" model="permisionario" report_type="qweb-pdf" name="tianguis__guadalajara.report_credencial_template" />
+        <template id="report_credencial_template">
+            <t t-call="report.html_container">
+                <!-- <t t-call="report.external_layout"> -->
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page">
+                        <style>
+                                h3,h5,span {
+                                    text-align: center;
+                                                        }
+                                                        
+                            </style>
+                        <header>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <img style="width: 150px; height: 100px; margin-top: 0px;float:left" src="C:\Program Files (x86)\Odoo 10.0\server\odoo\addons\Tianguis\Tianguis\Espac.png" />
+                                </div>
+                                <div class="col-xs-4">
+                                    <p style="text-align:center; margin: 0; padding-top: 12px;">No.Permisionario</p>
+                                    <h3 style="border:2px solid; border-radius:5px; padding-top:8px; padding-bottom:8px;">
+                                        <span t-field="doc.id" />
+                                    </h3>
+                                    <h3 style="color:blue">Credencial Rol Tianguis</h3>
+                                    <img style="width: 100%; height: 4px; float:right" src="C:\Program Files (x86)\Odoo 10.0\server\odoo\addons\Tianguis\Tianguis\linea.png" />
+                                    <p style="text-align:center">Vigente hasta Diciembre de 2020</p>
+                                </div>
+                                <div class="col-xs-4">
+                                    <img style="width: 150px; height: 100px; margin-top: 0px;float:right" src="C:\Program Files (x86)\Odoo 10.0\server\odoo\addons\Tianguis\Tianguis\GDL.png" />
+                                </div>
+                            </div>
+                        </header>
+                        <body>
+                            <br></br>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <span t-field="doc.imagen" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot; }" style="max-height:120px;" />
+                                </div>  
+                                <div class="col-xs-8">
+                                    <table class="table table-dark">
+                                        <!-- TIANGUIS -->
+                                        <t t-set="p_lunes" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="p_martes" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="p_miercoles" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="p_jueves" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="p_viernes" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="p_sabado" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="p_domingo" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <!-- Zona -->
+                                        <t t-set="zona_lunes" t-value="doc.run_sql('select  (c_zona_tianguis.&quot;smlZonaTianguis&quot;||c_zona_tianguis.&quot;chZonaTianguis&quot;) AS zona from puestos INNER JOIN c_zona_tianguis ON c_zona_tianguis.id = puestos.&quot;iZonaT&quot; where puestos.&quot;tynDia&quot; = 1 AND puestos.&quot;iPERMISIO&quot; =' + str(doc.id))" />
+                                        <t t-set="zona_martes" t-value="doc.run_sql('select  (c_zona_tianguis.&quot;smlZonaTianguis&quot;||c_zona_tianguis.&quot;chZonaTianguis&quot;) AS zona from puestos INNER JOIN c_zona_tianguis ON c_zona_tianguis.id = puestos.&quot;iZonaT&quot; where puestos.&quot;tynDia&quot; = 2 AND puestos.&quot;iPERMISIO&quot; =' + str(doc.id))" />
+                                        <t t-set="zona_miercoles" t-value="doc.run_sql('select  (c_zona_tianguis.&quot;smlZonaTianguis&quot;||c_zona_tianguis.&quot;chZonaTianguis&quot;) AS zona from puestos INNER JOIN c_zona_tianguis ON c_zona_tianguis.id = puestos.&quot;iZonaT&quot; where puestos.&quot;tynDia&quot; = 3 AND puestos.&quot;iPERMISIO&quot; =' + str(doc.id))" />
+                                        <t t-set="zona_jueves" t-value="doc.run_sql('select  (c_zona_tianguis.&quot;smlZonaTianguis&quot;||c_zona_tianguis.&quot;chZonaTianguis&quot;) AS zona from puestos INNER JOIN c_zona_tianguis ON c_zona_tianguis.id = puestos.&quot;iZonaT&quot; where puestos.&quot;tynDia&quot; = 4 AND puestos.&quot;iPERMISIO&quot; =' + str(doc.id))" />
+                                        <t t-set="zona_viernes" t-value="doc.run_sql('select  (c_zona_tianguis.&quot;smlZonaTianguis&quot;||c_zona_tianguis.&quot;chZonaTianguis&quot;) AS zona from puestos INNER JOIN c_zona_tianguis ON c_zona_tianguis.id = puestos.&quot;iZonaT&quot; where puestos.&quot;tynDia&quot; = 5 AND puestos.&quot;iPERMISIO&quot; =' + str(doc.id))" />
+                                        <t t-set="zona_sabado" t-value="doc.run_sql('select  (c_zona_tianguis.&quot;smlZonaTianguis&quot;||c_zona_tianguis.&quot;chZonaTianguis&quot;) AS zona from puestos INNER JOIN c_zona_tianguis ON c_zona_tianguis.id = puestos.&quot;iZonaT&quot; where puestos.&quot;tynDia&quot; = 6 AND puestos.&quot;iPERMISIO&quot; =' + str(doc.id))" />
+                                        <t t-set="zona_domingo" t-value="doc.run_sql('select  (c_zona_tianguis.&quot;smlZonaTianguis&quot;||c_zona_tianguis.&quot;chZonaTianguis&quot;) AS zona from puestos INNER JOIN c_zona_tianguis ON c_zona_tianguis.id = puestos.&quot;iZonaT&quot; where puestos.&quot;tynDia&quot; = 7 AND puestos.&quot;iPERMISIO&quot; =' + str(doc.id))" />
+                                        <!-- Giro -->
+                                      <!-- <t t-set="giro" t-value="doc.run_sql('select nombre from puestos INNER JOIN c_tianguis ON c_tianguis.id = puestos.&quot;smlTIANGUIS&quot; where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />-->
+                                        <t t-set="giro_lunes" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 1 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_martes" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 2 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_miercoles" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 3 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_jueves" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 4 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_viernes" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 5 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_sabado" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 6 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                        <t t-set="giro_domingo" t-value="doc.run_sql('select &quot;vchGiroComercial&quot; from puestos INNER JOIN c_giros_comerciales ON c_giros_comerciales.id = puestos.&quot;smlGIRO1&quot;  where puestos.&quot;tynDia&quot; = 7 and puestos.&quot;iPERMISIO&quot; = ' + str(doc.id))" />
+                                    
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" colspan="2">Titular</th>
+                                                <th scope="col" colspan="6">
+                                                    <span t-field="doc.nombres" />
+                                                    <span t-field="doc.apellidoP" />
+                                                    <span t-field="doc.apellidoP" />
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" colspan="1">DIA</th>
+                                                <th colspan="3"> TIANGUIS </th>
+                                                <th colspan="1"> ZONA </th>
+                                                <th colspan="1"> GIRO(s) </th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="1">LUNES</th>
+                                                <td colspan="3">
+                                                    <span t-esc="p_lunes" />
+                                                </td>
+                                                <td colspan="1">  <span t-esc="zona_lunes" /> </td>
+                                                <td colspan="1"> <span t-esc="giro_lunes" /> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="1">MARTES</th>
+                                                <td colspan="3">
+                                                    <span t-esc="p_martes" />
+                                                </td>
+                                                <td colspan="1"> <span t-esc="zona_martes" /> </td>
+                                                <td colspan="1"> <span t-esc="giro_martes" /> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="1">MIERCOLES</th>
+                                                <td colspan="3">
+                                                    <span t-esc="p_miercoles" />
+                                                </td>
+                                                <td colspan="1"> <span t-esc="zona_miercoles" /> </td>
+                                                <td colspan="1"> <span t-esc="giro_miercoles" /> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="1">JUEVES</th>
+                                                <td colspan="3">
+                                                    <span t-esc="p_jueves" />
+                                                </td>
+                                                <td colspan="1"> <span t-esc="zona_jueves" /> </td>
+                                                <td colspan="1"> <span t-esc="giro_jueves" /> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="1">VIERNES</th>
+                                                <td colspan="3">
+                                                    <span t-esc="p_viernes" />
+                                                </td>
+                                                <td colspan="1"> <span t-esc="zona_viernes" /> </td>
+                                                <td colspan="1"> <span t-esc="giro_viernes" /> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="1">SABADO</th>
+                                                <td colspan="3">
+                                                    <span t-esc="p_sabado" />
+                                                </td>
+                                                <td colspan="1"> <span t-esc="zona_sabado" /> </td>
+                                                <td colspan="1"> <span t-esc="giro_sabado" /> </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" colspan="1">DOMINGO</th>
+                                                <td colspan="3">
+                                                    <span t-esc="p_domingo" />
+                                                </td>
+                                                <td colspan="1"> <span t-esc="zona_domingo" /> </td>
+                                                <td colspan="1"> <span t-esc="giro_domingo" /> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </body>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
