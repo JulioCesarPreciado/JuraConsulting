@@ -1,0 +1,17 @@
+{
+  "name": "gestionador",
+  "version": "1.0.0",
+  "description": "Gestionador de aplicaciones",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julio",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^7.1.2"
+  },
+  "dependencies": {
+    "mysql": "^2.17.1",
+    "
